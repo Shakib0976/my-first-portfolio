@@ -4,6 +4,8 @@ import { FaBars, FaCode, FaEnvelope, FaFacebook, FaGithub, FaGraduationCap, FaHo
 import { NavLink, Outlet } from 'react-router';
 import Adbout from '../Pages/About/Adbout';
 import Skills from '../Pages/Skills/Skills';
+import Project from '../Pages/Project/Project';
+import Contact from '../Pages/Contact/Contact';
 
 const RootLayouts = () => {
 
@@ -21,7 +23,6 @@ const RootLayouts = () => {
         { to: "/", icon: <FaHome />, label: "Home" },
         { to: "/about", icon: <FaUser />, label: "About" },
         { to: "/skills", icon: <FaCode />, label: "Skills" },
-        { to: "/services", icon: <FaServicestack />, label: "Services" },
         { to: "/projects", icon: <FaProjectDiagram />, label: "Projects" },
         { to: "/contact", icon: <FaEnvelope />, label: "Contact" },
     ];
@@ -118,6 +119,8 @@ const RootLayouts = () => {
                     <Home></Home>
                     <Adbout></Adbout>
                     <Skills></Skills>
+                    <Project></Project>
+                    <Contact></Contact>
 
                 </div>
             </main>
