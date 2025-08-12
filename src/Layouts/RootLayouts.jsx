@@ -21,7 +21,7 @@ const RootLayouts = () => {
 
 
             <aside>
-                <div className="fixed top-1/2 left-10 -translate-y-1/2 flex flex-col items-center bg-gray-950 text-white border-gray-200 border-1 rounded-full p-2 shadow-lg z-50">
+                <div className="fixed top-1/2 left-10 hidden mt-10  -translate-y-1/2 md:flex flex-col items-center bg-gray-950 text-white border-gray-200 border-1 rounded-full p-2 shadow-lg z-50">
 
                     <NavLink
                         to="/"
@@ -96,7 +96,7 @@ const RootLayouts = () => {
                 </div>
             </aside>
             <main>     
-                <header className="bg-[#0f172a] sticky top-0  text-gray-200 px-6 md:px-20 py-5 border-b border-gray-700">
+                <header className="bg-[#0f172a] sticky top-0  z-50 text-gray-200 px-6 md:px-20 py-5 border-b border-gray-700">
                 <div className="flex  justify-between items-center">
                     {/* Logo */}
                     <h1 className="text-lg md:text-xl font-bold text-teal-400">
