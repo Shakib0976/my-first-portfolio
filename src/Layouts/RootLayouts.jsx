@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Home from '../Pages/Home/Home';
-import { FaBars, FaCode, FaEnvelope, FaFacebook, FaGithub, FaGraduationCap, FaHome, FaLinkedin, FaProjectDiagram, FaServicestack, FaTimes, FaUser } from 'react-icons/fa';
+import { FaBars, FaCode, FaEnvelope, FaFacebook, FaFacebookF, FaGithub, FaGraduationCap, FaHome, FaLinkedin, FaLinkedinIn, FaProjectDiagram, FaServicestack, FaTimes, FaUser } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router';
 import Adbout from '../Pages/About/Adbout';
 import Skills from '../Pages/Skills/Skills';
@@ -124,6 +124,50 @@ const RootLayouts = () => {
 
                 </div>
             </main>
+
+
+            {/* footer */}
+
+            <footer className="bg-gray-700 text-white py-12">
+                <div className="container mx-auto justify-center  px-4 flex flex-col md:flex-row  items-center">
+                    {/* Copyright */}
+                    <div className='flex flex-col-reverse gap-5 justify-center items-center'>
+                        <p className="text-sm mb-4 md:mb-0">
+                            © 2025 - All rights reserved by <span className="font-semibold">Shakib</span>
+                        </p>
+                      <div className='divider'></div>
+                        {/* Social Links */}
+                        <div className="flex space-x-5">
+                            <a
+                                href="https://www.facebook.com/md.shakib.khan.809698"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-blue-500 transition-colors duration-300"
+                            >
+                                <FaFacebookF size={25} />
+                            </a>
+
+                            <a
+                                href="https://www.linkedin.com/in/shakib09/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-blue-400 transition-colors duration-300"
+                            >
+                                <FaLinkedinIn size={25} />
+                            </a>
+
+                            <a
+                                href="https://github.com/Shakib0976"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-gray-400 transition-colors duration-300"
+                            >
+                                <FaGithub size={25} />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 };
