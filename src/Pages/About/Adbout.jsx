@@ -38,7 +38,16 @@ const Adbout = () => {
                                 My name is ** Shakib ** and I specialize in web development that utilizes **HTML, CSS, JS, and REACT etc.**
                                 <br />
                                 <br />
-                                I'm a MERN stack developer passionate about building clean and user-friendly web applications. I have spent a lot of time learning and practicing the skills needed to create dynamic, responsive projects. I’m eager to grow, take on new challenges, and contribute my best to every project I work on.
+                                I'm a MERN stack developer passionate about building clean and user-friendly web applications. 
+                                <br />
+                                <br />
+                                I enjoy hiking, reading tech blogs, playing guitar, and exploring new
+                                technologies.
+                                <br />
+                                <br />
+                                I began my programming journey with curiosity and passion. Starting with HTML and CSS
+                                <br />
+                                <br /> I’m eager to grow, take on new challenges, and contribute my best to every project I work on.
                                 <br />
                             </pre>
                         </div>

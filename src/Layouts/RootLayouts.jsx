@@ -3,6 +3,7 @@ import Home from '../Pages/Home/Home';
 import { FaBars, FaCode, FaEnvelope, FaFacebook, FaGithub, FaGraduationCap, FaHome, FaLinkedin, FaProjectDiagram, FaServicestack, FaTimes, FaUser } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router';
 import Adbout from '../Pages/About/Adbout';
+import Skills from '../Pages/Skills/Skills';
 
 const RootLayouts = () => {
 
@@ -116,6 +117,7 @@ const RootLayouts = () => {
                 <div className='md:hidden'>
                     <Home></Home>
                     <Adbout></Adbout>
+                    <Skills></Skills>
 
                 </div>
             </main>

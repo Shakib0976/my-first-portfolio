@@ -4,6 +4,7 @@ import {
 import Home from "../Pages/Home/Home";
 import RootLayouts from "../Layouts/RootLayouts";
 import Adbout from "../Pages/About/Adbout";
+import Skills from "../Pages/Skills/Skills";
 
 
 const router = createBrowserRouter([
@@ -16,6 +17,9 @@ const router = createBrowserRouter([
       },
       {
         path: 'about' , Component : Adbout
+      },
+      {
+        path: 'skills' , Component : Skills
       }
     ]
   }
