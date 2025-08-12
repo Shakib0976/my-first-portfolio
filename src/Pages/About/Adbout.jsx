@@ -6,9 +6,9 @@ const Adbout = () => {
 
     useEffect(() => {
         AOS.init({
-            duration: 1000, // animation duration in ms
+            duration: 1000,
             easing: "ease-in-out",
-            once: true, // animation only happens once on scroll
+            once: true, 
         });
     }, []);
     return (

@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Project = () => {
+
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            easing: "ease-in-out",
+            once: true,
+        });
+    }, []);
+
     return (
         <div>
             <section className="bg-gray-900 min-h-screen text-white w-11/14 mx-auto py-12">
@@ -10,7 +21,12 @@ const Project = () => {
                     <div className="grid gap-8  sm:grid-cols-2 lg:grid-cols-3">
 
                         {/* Project 1 */}
-                        <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div
+
+                            data-aos="fade-right"
+                            data-aos-delay="200"
+
+                            className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <img src="https://i.ibb.co.com/HpqVh964/Screenshot-2025-08-08-192622.png" alt="Project 1" className="w-full h-48 object-cover" />
                             <div className="p-5">
                                 <h3 className="text-2xl font-semibold mb-3">Eco Food</h3>
@@ -24,7 +40,13 @@ const Project = () => {
                         </div>
 
                         {/* Project 2 */}
-                        <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div
+
+                            data-aos="fade-up"
+                            data-aos-delay="200"
+
+
+                            className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <img src="https://i.ibb.co.com/d4kT2tK5/Screenshot-2025-08-08-190459.png" alt="Project 2" className="w-full h-48 object-cover" />
                             <div className="p-5">
                                 <h3 className="text-2xl font-semibold mb-3">Dev Knowledge</h3>
@@ -38,7 +60,13 @@ const Project = () => {
                         </div>
 
                         {/* Project 3 */}
-                        <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div
+
+                            data-aos="fade-left"
+                            data-aos-delay="200"
+
+
+                            className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <img src="https://i.ibb.co.com/twwyxgJN/Screenshot-2025-08-08-185015.png" alt="Project 3" className="w-full h-48 object-cover" />
                             <div className="p-5">
                                 <h3 className="text-2xl font-semibold mb-3">Freelancer MarketPlace</h3>
