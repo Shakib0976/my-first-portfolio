@@ -122,7 +122,7 @@ const Skills = () => {
         <div>
             <section
                 id="skills"
-                className="relative bg-gray-900 min-h-screen flex items-center justify-center py-16 px-4 overflow-hidden"
+                className="relative min-h-screen flex items-center justify-center py-16 px-4 overflow-hidden"
             >
                 {/* Background code snippet */}
                 <div className="absolute inset-0 z-0">

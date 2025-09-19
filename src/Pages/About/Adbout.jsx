@@ -13,7 +13,7 @@ const Adbout = () => {
     }, []);
     return (
         <div>
-            <div className="bg-gray-900 flex md:w-11/14 mt-10 mx-auto min-h-screen text-gray-300 relative overflow-hidden font-mono">
+            <div className=" flex md:w-11/14 mt-10 mx-auto min-h-screen text-gray-300 relative overflow-hidden font-mono">
                 <div
                     className="absolute inset-0 bg-repeat opacity-10"
                     style={{ backgroundImage: "url(https://www.transparenttextures.com/patterns/lined-paper.png)" }}

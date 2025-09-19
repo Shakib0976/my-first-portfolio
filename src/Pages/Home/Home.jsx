@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
-import { FaDownload, FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
-import { useState, useEffect } from "react";
+import { FaDownload } from 'react-icons/fa';
+import PixelTransition from '../../Components/PixelTransiction';
 
+import Adbout from '../About/Adbout';
+import Skills from '../Skills/Skills';
+import Project from '../Project/Project';
+import Contact from '../Contact/Contact';
 
 const Home = () => {
-
     const words = ["a MERN Stack Developer", "a Frontend Specialist"];
     const [text, setText] = useState("");
     const [wordIndex, setWordIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
-    const [speed, setSpeed] = useState(150);
+    const [speed] = useState(150);
 
     useEffect(() => {
         const current = words[wordIndex];
@@ -30,106 +33,124 @@ const Home = () => {
         }, speed);
 
         return () => clearTimeout(timeout);
-    }, [text, isDeleting, wordIndex]);
-
+    }, [text, isDeleting, wordIndex, words, speed]);
 
     return (
-        <div className="min-h-screen w-11/12 mx-auto bg-[#0f172a] text-gray-200 px-6 md:px-20 py-10 font-sans">
+        <div className="text-gray-200 font-sans">
+            {/* hero section */}
+            <section id="home" className="min-h-screen w-11/12 mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-10">
+                {/* mobile heading */}
+                <h1 className="text-3xl sm:text-4xl mb-8 mt-5 md:hidden text-center font-semibold text-teal-400">
+                    Developer
+                </h1>
 
+                <div className="flex flex-col lg:flex-row-reverse justify-evenly items-center mt-10 lg:mt-20 gap-10 lg:gap-20">
 
-            <h1 className="text-4xl mb-10 mt-5 md:hidden text-center block font-semibold text-teal-400">Developer</h1>
+                    {/* Image with floating cards */}
+                    <div className="relative flex justify-center items-center w-52 h-52 sm:w-72 sm:h-72 lg:w-96 lg:h-96">
+                        {/* Shadow background (glow) */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 blur-2xl opacity-40"></div>
 
-            <div className="md:flex justify-evenly mt-20 gap-5">
-                {/* Left Card */}
-                <div>
-                    <motion.div
-                        initial={{ y: 0 }}
-                        animate={{ y: [0, -20, 0] }} // Up, down, back
-                        transition={{
-                            duration: 1.5, // Time for one cycle
-                            repeat: Infinity, // Loop forever
-                            repeatType: "loop", // Restart from beginning
-                            ease: "easeInOut",
-                        }}
-                        className="bg-[#1b232d] mb-10 items-center border-2 border-teal-400 p-1 text-white w-60 md:w-70 lg:w-80 md:h-90 lg:h-100 h-80 shadow-lg relative overflow-hidden"
-                        style={{
-                            borderTopLeftRadius: "200px 200px",
-                            borderBottomRightRadius: "50px 50px",
-                            borderTopRightRadius: "0",
-                            borderBottomLeftRadius: "0",
-                        }}
-                    >
-                        <img
-                            className="w-full h-full object-cover"
-                            src="https://i.ibb.co.com/Lzr4yjxw/Whats-App-Image-2025-07-30-at-18-11-16-2e48b6d2.jpg"
-                            alt=""
+                        <PixelTransition
+                            firstContent={
+                                <img
+                                    src="https://i.ibb.co.com/GQhkTh80/sk8-24-at-09-22-28-1cea5aae.jpg"
+                                    alt="Profile"
+                                    className="rounded-full w-full h-full object-cover"
+                                />
+                            }
+                            secondContent={
+                                <img
+                                    src="https://i.ibb.co.com/GQhkTh80/sk8-24-at-09-22-28-1cea5aae.jpg"
+                                    alt="Profile"
+                                    className="rounded-full w-full h-full object-cover"
+                                />
+                            }
+                            gridSize={12}
+                            pixelColor="#ffffff"
+                            animationStepDuration={0.4}
+                            className="custom-pixel-card"
                         />
-                    </motion.div>
-                </div>
 
-
-                {/* middle card */}
-
-                <div className=''>
-                    <h1 className="text-sm font-bold lg:mt-10 mb-2 text-teal-400">&lt;C/&gt;</h1>
-                    <p className=" text-2xl md:text-4xl  lg:text-5xl -mr-10">
-
-                       <span className='mb-2'> Hey </span><br /> I’m <span className="text-teal-400">Shakib</span>, <br />
-                        <h1 className='mt-2 h-10' >
-                            {text}
-                           
-                        </h1>
-                    </p>
-
-
-
-                    <h1 className="text-sm font-bold mt-4 text-teal-400">&lt;C/&gt;</h1>
-
-                    <p className="mt-4 text-sm md:text-lg text-gray-400">
-                        I help businesses grow by crafting amazing web applications. If you’re <br /> looking for a developer who loves to get stuff done, let’s talk.
-                    </p>
-                    {/* Download CV Button */}
-                    <div className="mt-6">
-                        <a
-                            href="/cv.pdf"
-                            download
-                            className="flex items-center justify-center w-50 gap-2 bg-white text-black px-4 py-2 rounded shadow hover:bg-gray-200"
+                        {/* Floating skill cards */}
+                        <motion.div
+                            initial={{ y: 0 }}
+                            animate={{ y: [0, -10, 0] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                            className="absolute -left-16 sm:-left-24 lg:-left-32 top-1/3 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
                         >
-                            Download CV <FaDownload />
-                        </a>
+                            Frontend Developer
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ x: 0 }}
+                            animate={{ x: [0, 10, 0] }}
+                            transition={{ duration: 2.5, repeat: Infinity }}
+                            className="absolute -right-10 sm:-right-16 lg:-right-24 top-1/5 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
+                        >
+                            MERN Stack Developer
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ x: 0 }}
+                            animate={{ x: [0, 10, 0] }}
+                            transition={{ duration: 2.5, repeat: Infinity }}
+                            className="absolute -right-5 sm:-right-8 lg:-right-10 bottom-1/5 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
+                        >
+                            Problem Solver
+                        </motion.div>
                     </div>
 
-                </div>
+                    {/* middle card */}
+                    <div className="text-center lg:text-left max-w-xl">
+                        {/* <h1 className="text-sm font-bold mb-2 text-teal-400">&lt;C/&gt;</h1> */}
+                        <p className="text-2xl text-gray-800  sm:text-3xl md:text-4xl lg:text-6xl font-semibold leading-snug">
+                            <span className="mb-2 ">Hey</span>
+                            <br /> I’m <span className="text-teal-600"> Md. Shakib </span>, <br />
+                            <span className="mt-2 h-10 block text-2xl text-gray-600 font-semibold">{text}|</span>
+                        </p>
 
-                {/* state card  */}
-                <div className=" hidden lg:block ">
-                    <div className="bg-gray-950 mt-20  text-white rounded-4xl py-6 px-2  shadow-2xl">
-                        <div className="flex items-center space-x-4 pb-4 border-b border-gray-700">
+                        {/* <h1 className="text-sm font-bold mt-4 text-teal-400">&lt;C/&gt;</h1> */}
 
-                            <span className="text-4xl font-bold text-cyan-400">4</span>
+                        <p className="mt-4  text-sm sm:text-base font-normal md:text-lg text-gray-400 leading-relaxed">
+                            Frontend Web Developer skilled in React, JavaScript, and full-stack technologies including Node.js, Express.js, and
+                            MongoDB. Experienced in building scalable, responsive, and user-friendly web applications.
+                        </p>
 
-                            <p className="text-sm text-gray-200">Programming <br /> Language</p>
-                        </div>
-
-
-                        <div className="flex items-center space-x-4 py-4 border-b border-gray-700">
-                            <span className="text-4xl font-bold text-cyan-400">6</span>
-                            <p className="text-sm text-gray-200">Development <br /> Tools</p>
-                        </div>
-
-
-                        <div className="flex items-center space-x-4 pt-4">
-                            <span className="text-4xl font-bold text-cyan-400">1</span>
-                            <p className="text-sm text-gray-200">Years of <br /> Experience</p>
+                        <div className="mt-6 md:mt-8 flex justify-center lg:justify-start">
+                            <a
+                                href="/Shakib.Resume.docx (5).pdf"
+                                download
+                                className="flex items-center gap-2 bg-gradient-to-r from-teal-400 to-teal-600 hover:text-black px-4 py-2 rounded shadow text-teal-100 text-sm sm:text-base"
+                            >
+                                Download CV <FaDownload />
+                            </a>
                         </div>
                     </div>
                 </div>
+            </section>
 
-            </div>
+            {/* about section */}
+            <section id="about" className="scroll-mt-20">
+                <Adbout />
+            </section>
+
+            {/* skills section */}
+            <section id="skills" className="scroll-mt-20">
+                <Skills />
+            </section>
+
+            {/* projects section */}
+            <section id="projects" className="scroll-mt-20">
+                <Project />
+            </section>
+
+            {/* contact section */}
+            <section id="contact" className="scroll-mt-20">
+                <Contact />
+            </section>
         </div>
     );
 };
 
 export default Home;
-
-

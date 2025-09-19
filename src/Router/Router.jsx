@@ -10,12 +10,13 @@ import Project2 from "../Pages/Project/Project2";
 import Project3 from "../Pages/Project/Project3";
 import Project from "../Pages/Project/Project";
 import Contact from "../Pages/Contact/Contact";
+import Project4 from "../Pages/Project/Project4";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: RootLayouts,
+    element : <RootLayouts/>,
     children:[
       {
         index:true , Component: Home
@@ -44,6 +45,9 @@ const router = createBrowserRouter([
      },
      {
       path : 'contact' , Component : Contact
+     },
+     {
+      path : "project4" ,Component: Project4
      }
     ]
   }
