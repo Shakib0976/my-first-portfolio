@@ -17,29 +17,29 @@ const RootLayouts = () => {
 
     // sidebar items (smooth scroll on home)
     const navItemsV = [
-        { to: "/#home", icon: <FaHome />, label: "Home" },
-        { to: "/#about", icon: <FaUser />, label: "About" },
-        { to: "/#skills", icon: <FaCode />, label: "Skills" },
-        { to: "/#projects", icon: <FaProjectDiagram />, label: "Projects" },
-        { to: "/#contact", icon: <FaEnvelope />, label: "Contact" },
+        { to: "/#home", icon: <FaHome color='black' />, label: "Home" },
+        { to: "/#about", icon: <FaUser color='black'/>, label: "About" },
+        { to: "/#skills", icon: <FaCode color='black'/>, label: "Skills" },
+        { to: "/#projects", icon: <FaProjectDiagram color='black'/>, label: "Projects" },
+        { to: "/#contact", icon: <FaEnvelope color='black' />, label: "Contact" },
     ];
 
     return (
-        <div className='bg-gradient-to-r from-blue-400/5 via-purple-400/5 to-teal-400/5 '>
+        <div className=' bg-gradient-to-r from-blue-400/5 via-purple-400/5 to-teal-400/5 '>
             {/* sidebar */}
             <aside>
-                <div className="fixed top-1/2 left-5 hidden mt-10 -translate-y-1/2 md:flex flex-col items-center bg-slate-950/50 text-white border border-gray-200 rounded-full p-2 shadow-lg z-50">
+                <div className="fixed top-1/2 left-5 hidden mt-10 -translate-y-1/2 md:flex flex-col items-center bg-gradient-to-b from-blue-500/30 via-purple-500/30 to-teal-500/30 text-white border border-gray-200 rounded-full p-2 shadow-lg z-50">
                     {navItemsV.map(({ to, icon, label }) => (
                         <HashLink
                             smooth
                             key={to}
                             to={to}
-                            className="group relative w-10 h-[13vh] flex items-center justify-center rounded-full mb-3 hover:bg-gray-500 transition-colors duration-300"
+                            className="group relative w-10 h-[10vh] flex items-center justify-center rounded-full mb-3 hover:bg-gray-950/20 transition-colors duration-300"
                         >
                             {icon}
                             <span
                                 className="absolute left-full top-1/2 ml-3 -translate-y-1/2 
-                       whitespace-nowrap rounded bg-slate-950/50 px-3 py-2 text-sm 
+                       whitespace-nowrap rounded bg-slate-950/40 text-teal-300 font-bold px-3 py-2 text-sm 
                        opacity-0 group-hover:opacity-100 pointer-events-none
                        transition-opacity duration-300
                        select-none"

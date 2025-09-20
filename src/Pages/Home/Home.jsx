@@ -36,9 +36,9 @@ const Home = () => {
     }, [text, isDeleting, wordIndex, words, speed]);
 
     return (
-        <div className="text-gray-200 font-sans">
+        <div className="text-gray-200 font-sans ">
             {/* hero section */}
-            <section id="home" className="min-h-screen w-11/12 mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-10">
+            <section id="home" className="min-h-screen w-11/12 scroll-mt-20 mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-10">
                 {/* mobile heading */}
                 <h1 className="text-3xl sm:text-4xl mb-8 mt-5 md:hidden text-center font-semibold text-teal-400">
                     Developer
@@ -103,16 +103,19 @@ const Home = () => {
 
                     {/* middle card */}
                     <div className="text-center lg:text-left max-w-xl">
+                        <span className='text-teal-500 py-1 px-2 rounded-full bg-gradient-to-r from-blue-500/15 via-purple-500/15 to-teal-500/15'>Welcome My Portfolio</span>
                         {/* <h1 className="text-sm font-bold mb-2 text-teal-400">&lt;C/&gt;</h1> */}
-                        <p className="text-2xl text-gray-800  sm:text-3xl md:text-4xl lg:text-6xl font-semibold leading-snug">
-                            <span className="mb-2 ">Hey</span>
-                            <br /> I’m <span className="text-teal-600"> Md. Shakib </span>, <br />
-                            <span className="mt-2 h-10 block text-2xl text-gray-600 font-semibold">{text}|</span>
+                        <p className="text-2xl poppins-font text-gray-800  sm:text-3xl md:text-4xl lg:text-6xl font-semibold leading-snug">
+
+                            <span class="text-gray-800 text-3xl font-bold">Hi</span>
+                            <span class="wave inline-block text-4xl animate-wave">👋</span>
+                            <br /> I’m <span className="text-teal-600"> Md. Shakib </span><br />
+                            <span className="mt-2 h-10 block inter-font text-2xl text-gray-700 font-semibold">{text}|</span>
                         </p>
 
                         {/* <h1 className="text-sm font-bold mt-4 text-teal-400">&lt;C/&gt;</h1> */}
 
-                        <p className="mt-4  text-sm sm:text-base font-normal md:text-lg text-gray-400 leading-relaxed">
+                        <p className="mt-4 inter-font  text-sm sm:text-base font-normal text-gray-700 leading-relaxed">
                             Frontend Web Developer skilled in React, JavaScript, and full-stack technologies including Node.js, Express.js, and
                             MongoDB. Experienced in building scalable, responsive, and user-friendly web applications.
                         </p>

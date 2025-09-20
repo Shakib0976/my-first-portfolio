@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from "react-router";
 import router from './Router/Router.jsx';
+import SmoothScrollProvider from './Components/SmoothScrollBehebiure.jsx';
 
 
 
@@ -13,6 +14,8 @@ import router from './Router/Router.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-     <RouterProvider router={router} />
+    <SmoothScrollProvider>
+      <RouterProvider router={router} />
+    </SmoothScrollProvider>
   </StrictMode>,
 )
