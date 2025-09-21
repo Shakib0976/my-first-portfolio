@@ -1,73 +1,110 @@
 import React, { useEffect } from 'react';
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { HashLink } from 'react-router-hash-link';
+import { Monitor, Cloud, Code2, Mail } from "lucide-react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 
 const Adbout = () => {
 
     useEffect(() => {
         AOS.init({
-            duration: 1000,
-            easing: "ease-in-out",
-            once: true, 
+            duration: 1000, // animation duration
+            once: false,     // animate only once
         });
     }, []);
+
     return (
-        <div>
-            <div className=" flex md:w-11/14 mt-10 mx-auto min-h-screen text-gray-300 relative overflow-hidden font-mono">
-                <div
-                    className="absolute inset-0 bg-repeat opacity-10"
-                    style={{ backgroundImage: "url(https://www.transparenttextures.com/patterns/lined-paper.png)" }}
-                ></div>
-                <div className="container md:ml-2 mx-auto px-4 py-20 flex flex-col md:flex-row items-center justify-center relative z-10">
-                    {/* Left section */}
-                    <div className="md:w-1/2 flex flex-col items-start space-y-8">
-                        <button className="relative px-10 py-2 text-2xl text-white font-medium rounded-tl-2xl rounded-br-2xl border border-teal-400 hover:bg-teal-400/10 transition duration-300">
-                            About Me
-                            <span className="absolute inset-0 rounded-tl-2xl rounded-br-2xl border border-teal-400 -z-10 blur-sm"></span>
-                        </button>
+        <div className="text-black min-h-screen mx-auto max-w-11/14 px-4 py-12 flex flex-col-reverse lg:flex-row-reverse items-center lg:items-start gap-12">
 
-                        <div
-                            data-aos="fade-up"
-                            data-aos-delay="200"
+            {/* Timeline */}
+            <div className="w-full lg:w-1/2">
+                <div className="relative pl-8 sm:pl-12">
+                    {/* Vertical line */}
+                    <div className="absolute left-4 sm:left-6 top-0 h-full border-l-2 border-red-500"></div>
 
-                            className="bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700">
-                            <pre className="text-sm leading-relaxed whitespace-pre-wrap">
-                                <span className="text-green-400 font-bold">Hello!</span>
-                                <br />
-                                <br />
-                                My name is ** Shakib ** and I specialize in web development that utilizes **HTML, CSS, JS, and REACT etc.**
-                                <br />
-                                <br />
-                                I'm a MERN stack developer passionate about building clean and user-friendly web applications. 
-                                <br />
-                                <br />
-                                I enjoy hiking, reading tech blogs, playing guitar, and exploring new
-                                technologies.
-                                <br />
-                                <br />
-                                I began my programming journey with curiosity and passion. Starting with HTML and CSS
-                                <br />
-                                <br /> I’m eager to grow, take on new challenges, and contribute my best to every project I work on.
-                                <br />
-                            </pre>
+                    {/* Item 1 */}
+                    <div data-aos="fade-left" className="flex items-center mb-12 sm:mb-16 relative">
+                        <div className="absolute -left-2 sm:-left-[9px] w-4 h-4 rounded-full bg-white border-2 border-red-500"></div>
+                        <div className="flex items-center gap-4 ml-6">
+                            <Monitor className="text-black w-8 h-8 sm:w-10 sm:h-10" />
+                            <span className="text-black text-base sm:text-lg">Website Development</span>
                         </div>
                     </div>
 
-                    {/* Right section with AOS animation */}
-                    <div
-                        data-aos="fade-up"
-                        data-aos-delay="200"
-                        className="md:w-1/2 mt-12 md:ml-2 md:mt-0 flex justify-center"
-                    >
-                        <div className="relative mt-10 border-4 border-gray-600 rounded-lg shadow-2xl p-2 w-full max-w-md">
-                            <img
-                                src="https://i.ibb.co/Mxdp3Shz/black-man-programmer-manages-code-scripts-artificial-intelligence.jpg"
-                                alt="Person coding on a laptop"
-                                className="w-full h-auto rounded-md"
-                            />
+                    {/* Item 2 */}
+                    <div data-aos="fade-left" className="flex items-center mb-12 sm:mb-16 relative">
+                        <div className="absolute -left-2 sm:-left-[9px] w-4 h-4 rounded-full bg-white border-2 border-red-500"></div>
+                        <div className="flex items-center gap-4 ml-6">
+                            <Code2 className="text-black w-8 h-8 sm:w-10 sm:h-10" />
+                            <span className="text-black text-base sm:text-lg">Frontend Development</span>
+                        </div>
+                    </div>
+
+                    {/* Item 3 */}
+                    <div data-aos="fade-left" className="flex items-center relative">
+                        <div className="absolute -left-2 sm:-left-[9px] w-4 h-4 rounded-full bg-white border-2 border-red-500"></div>
+                        <div className="flex items-center gap-4 ml-6">
+                            <Cloud className="text-black w-8 h-8 sm:w-10 sm:h-10" />
+                            <span className="text-black text-base sm:text-lg">Website Hosting</span>
+                        </div>
+                    </div>
+
+                    {/* Stats */}
+                    <div data-aos="fade-left" className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        <div className="bg-white/40 rounded-2xl shadow p-6 text-center">
+                            <div className="text-2xl font-bold text-teal-600">2+</div>
+                            <div className="text-gray-600">Years Experience</div>
+                        </div>
+                        <div className="bg-white/40 rounded-2xl shadow p-6 text-center">
+                            <div className="text-2xl font-bold text-teal-600">10+</div>
+                            <div className="text-gray-600">Projects Completed</div>
+                        </div>
+                        <div className="bg-white/40 rounded-2xl shadow p-6 text-center">
+                            <div className="text-2xl font-bold text-teal-600">40K+</div>
+                            <div className="text-gray-600">Lines of Code</div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            {/* About Section */}
+            <div data-aos="fade-up" className="w-full lg:w-1/2">
+                <h1 className="text-3xl poppins-font sm:text-4xl font-bold mb-4">
+                    About <span className="text-teal-600">Me</span>
+                </h1>
+
+                <p className="text-gray-700 mb-6 text-sm sm:text-base">
+                    I am a passionate Frontend Developer with expertise in the MERN stack,
+                    dedicated to creating seamless digital experiences that marry elegant design
+                    with robust functionality. My expertise spans the modern web development ecosystem,
+                    with deep proficiency in React, Tailwind CSS, Node.js, Express.js, and MongoDB.
+                </p>
+
+                <div className="space-y-2 mb-6 text-sm sm:text-base">
+                    <p><span className="font-semibold">Fullname:</span> Md. Shakib Khan Noyon</p>
+                    <p><span className="font-semibold">Address:</span> Sylhet, Bangladesh</p>
+                    <p>
+                        <span className="font-semibold">Email:</span>{' '}
+                        <a href="mailto:web.shakib09@gmail.com" className="text-teal-500 break-words">
+                            web.shakib09@gmail.com
+                        </a>
+                    </p>
+                    <p>
+                        <span className="font-semibold">Phone:</span>{' '}
+                        <a href="tel:+8801902042884" className="text-teal-500">
+                            +8801902042884
+                        </a>
+                    </p>
+                </div>
+
+                <HashLink
+                    to="/#contact"
+                    className="flex items-center gap-2 w-40 bg-gradient-to-r from-teal-400 to-teal-600 hover:text-black px-4 py-2 rounded shadow text-teal-100 text-sm sm:text-base"
+                >
+                     <Mail className="w-4 h-4" /> Contact Me
+                </HashLink>
             </div>
         </div>
     );

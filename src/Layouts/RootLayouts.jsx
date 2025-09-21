@@ -79,7 +79,7 @@ const RootLayouts = () => {
 
                         {/* Mobile Menu Button */}
                         <button
-                            className="md:hidden text-gray-200 text-2xl"
+                            className="md:hidden text-gray-600 text-2xl"
                             onClick={() => setIsOpen(!isOpen)}
                         >
                             {isOpen ? <FaTimes /> : <FaBars />}
