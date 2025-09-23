@@ -1,182 +1,151 @@
-import React from 'react';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { FaNodeJs, FaReact } from 'react-icons/fa';
-import { SiExpress, SiMongodb } from 'react-icons/si';
-import { IoLogoJavascript } from 'react-icons/io';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+    FaReact, FaNodeJs, FaTools, FaUserTie
+} from "react-icons/fa";
+import {
+    SiRedux, SiJavascript, SiHtml5, SiCss3, SiTailwindcss,
+    SiStyledcomponents, SiExpress, SiMongodb, SiJsonwebtokens, SiFirebase,
+    SiGithub, SiVercel, SiFigma
+} from "react-icons/si";
 
-const skillsData = [
-    {
-        name: "HTML",
-        bgColor: "bg-orange-500",
-        textColor: "text-white",
-        shadowColor: "shadow-orange-500/30",
-        svg: (
-            <svg
-                className="w-14 h-14"
-                role="img"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <title>HTML5</title>
-                <path
-                    fill="currentColor"
-                    d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622H5.412l.66 7.5h8.974l-.337 3.783-2.752.76-2.752-.76-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"
-                />
-            </svg>
-        ),
-    },
-    {
-        name: "CSS",
-        bgColor: "bg-blue-500",
-        textColor: "text-white",
-        shadowColor: "shadow-blue-500/30",
-        svg: (
-            <svg
-                className="w-14 h-14"
-                role="img"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <title>CSS3</title>
-                <path
-                    fill="currentColor"
-                    d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.653h6.182l-.366 3.924-2.91.804-2.956-.81-.188-2.11H6.248l.33 4.17L12 19.35l5.38-1.44.744-8.363H8.73l-.22-2.548h10.86l.21-2.58z"
-                />
-            </svg>
-        ),
-    },
-    {
-        name: "JavaScript",
-        bgColor: "bg-yellow-400",
-        textColor: "text-black",
-        shadowColor: "shadow-yellow-400/30",
-        svg:<IoLogoJavascript size={50} />,
-    },
-    {
-        name: "React",
-        bgColor: "bg-sky-500",
-        textColor: "text-white",
-        shadowColor: "shadow-sky-500/30",
-        svg:<FaReact size={50} />,
-    },
-    {
-        name: "MongoDB",
-        bgColor: "bg-green-600",
-        textColor: "text-white",
-        shadowColor: "shadow-green-600/30",
-        svg:<SiMongodb size={50} />,
-    },
-    {
-        name: "Node.js",
-        bgColor: "bg-green-500",
-        textColor: "text-white",
-        shadowColor: "shadow-green-500/30",
-        svg: <FaNodeJs size={50} />,
-    },
-    {
-        name: "Express.js",
-        bgColor: "bg-gray-800",
-        textColor: "text-white",
-        shadowColor: "shadow-gray-800/30",
-        svg:<SiExpress size={50} />,
-    },
-];
-
-
-
+const skillsData = {
+    All: [
+        { name: "HTML", icon: <SiHtml5 className="text-3xl text-purple-500" /> },
+        { name: "CSS", icon: <SiCss3 className="text-3xl text-purple-500" /> },
+        { name: "JavaScript", icon: <SiJavascript className="text-3xl text-purple-500" /> },
+        { name: "ReactJs", icon: <FaReact className="text-3xl text-purple-500" /> },
+        { name: "Tailwind CSS", icon: <SiTailwindcss className="text-3xl text-purple-500" /> },
+        { name: "Styled Component", icon: <SiStyledcomponents className="text-3xl text-purple-500" /> },
+        { name: "Node.js", icon: <FaNodeJs className="text-3xl text-purple-500" /> },
+        { name: "ExpressJs", icon: <SiExpress className="text-3xl text-purple-500" /> },
+        { name: "MongoDB", icon: <SiMongodb className="text-3xl text-purple-500" /> },
+        { name: "Mongoose", icon: <SiMongodb className="text-3xl text-purple-500" /> },
+        { name: "REST APIs", icon: <SiRedux className="text-3xl text-purple-500" /> },
+        { name: "JWT", icon: <SiJsonwebtokens className="text-3xl text-purple-500" /> },
+        { name: "Firebase", icon: <SiFirebase className="text-3xl text-purple-500" /> },
+        { name: "GitHub", icon: <SiGithub className="text-3xl text-purple-500" /> },
+        { name: "GitHub Actions", icon: <SiGithub className="text-3xl text-purple-500" /> },
+        { name: "AI Integration", icon: <FaTools className="text-3xl text-purple-500" /> },
+        { name: "Firebase", icon: <SiFirebase className="text-3xl text-purple-500" /> },
+        { name: "Vercel", icon: <SiVercel className="text-3xl text-purple-500" /> },
+        { name: "Figma", icon: <SiFigma className="text-3xl text-purple-500" /> },
+        { name: "Project Management", icon: <FaUserTie className="text-3xl text-purple-500" /> },
+        { name: "Team Leadership", icon: <FaUserTie className="text-3xl text-purple-500" /> },
+        { name: "Communication", icon: <FaUserTie className="text-3xl text-purple-500" /> },
+        { name: "Problem Solving", icon: <FaUserTie className="text-3xl text-purple-500" /> },
+        { name: "Decision Making", icon: <FaUserTie className="text-3xl text-purple-500" /> },
+        { name: "Adaptability", icon: <FaUserTie className="text-3xl text-purple-500" /> },
+    ],
+    Frontend: [
+        { name: "HTML", icon: <SiHtml5 className="text-3xl text-purple-500" /> },
+        { name: "CSS", icon: <SiCss3 className="text-3xl text-purple-500" /> },
+        { name: "JavaScript", icon: <SiJavascript className="text-3xl text-purple-500" /> },
+        { name: "ReactJs", icon: <FaReact className="text-3xl text-purple-500" /> },
+        { name: "Tailwind CSS", icon: <SiTailwindcss className="text-3xl text-purple-500" /> },
+        { name: "Styled Component", icon: <SiStyledcomponents className="text-3xl text-purple-500" /> },
+    ],
+    Backend: [
+        { name: "Node.js", icon: <FaNodeJs className="text-3xl text-purple-500" /> },
+        { name: "ExpressJs", icon: <SiExpress className="text-3xl text-purple-500" /> },
+        { name: "MongoDB", icon: <SiMongodb className="text-3xl text-purple-500" /> },
+        { name: "Mongoose", icon: <SiMongodb className="text-3xl text-purple-500" /> },
+        { name: "REST APIs", icon: <SiRedux className="text-3xl text-purple-500" /> },
+        { name: "JWT", icon: <SiJsonwebtokens className="text-3xl text-purple-500" /> },
+        { name: "Firebase", icon: <SiFirebase className="text-3xl text-purple-500" /> },
+    ],
+    Tools: [
+        { name: "GitHub", icon: <SiGithub className="text-3xl text-purple-500" /> },
+        { name: "GitHub Actions", icon: <SiGithub className="text-3xl text-purple-500" /> },
+        { name: "AI Integration", icon: <FaTools className="text-3xl text-purple-500" /> },
+        { name: "Firebase", icon: <SiFirebase className="text-3xl text-purple-500" /> },
+        { name: "Vercel", icon: <SiVercel className="text-3xl text-purple-500" /> },
+        { name: "Figma", icon: <SiFigma className="text-3xl text-purple-500" /> },
+    ],
+    SoftSkills: [
+        { name: "Project Management", icon: <FaUserTie className="text-3xl text-purple-500" /> },
+        { name: "Team Leadership", icon: <FaUserTie className="text-3xl text-purple-500" /> },
+        { name: "Communication", icon: <FaUserTie className="text-3xl text-purple-500" /> },
+        { name: "Problem Solving", icon: <FaUserTie className="text-3xl text-purple-500" /> },
+        { name: "Decision Making", icon: <FaUserTie className="text-3xl text-purple-500" /> },
+        { name: "Adaptability", icon: <FaUserTie className="text-3xl text-purple-500" /> },
+    ],
+};
 
 const Skills = () => {
+    const [selectedCategory, setSelectedCategory] = useState("All");
+    const [showAll, setShowAll] = useState(false); // new state
+    const categories = ["All", "Frontend", "Backend", "Tools", "SoftSkills"];
 
-
-    const settings = {
-        infinite: true,
-        speed: 600,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 1000,
-        pauseOnHover: true,
-        responsive: [
-            {
-                breakpoint: 1280, // Large screens
-                settings: { slidesToShow: 4 }
-            },
-            {
-                breakpoint: 1024, // Tablets
-                settings: { slidesToShow: 3 }
-            },
-            {
-                breakpoint: 768, // Small tablets
-                settings: { slidesToShow: 2 }
-            },
-            {
-                breakpoint: 480, // Mobile
-                settings: { slidesToShow: 1 }
-            }
-        ]
-    };
+    // show only first 8 (2 rows x 4 cols) if showAll = false
+    const itemsToShow = showAll
+        ? skillsData[selectedCategory]
+        : skillsData[selectedCategory].slice(0, 12);
 
     return (
-        <div>
-            <section
-                id="skills"
-                className="relative min-h-screen flex items-center justify-center py-16 px-4 overflow-hidden"
-            >
-                {/* Background code snippet */}
-                <div className="absolute inset-0 z-0">
-                    <pre className="text-gray-700/10 text-[10px] sm:text-xs break-all select-none font-mono">
-                        {`.skills-section {display: flex; align-items: center; } const newSkill = () => {console.log("Always Learning!"); } function getTechStack(stack) { return stack.join(', '); } .card:hover {transform: scale(1.05); box-shadow: 0 0 15px cyan; } @media (max-width: 768px) {flex - direction: column; } body {font - family: 'Inter', sans-serif; }`}
-                    </pre>
+        <section className="py-12">
+            <h1 className="text-3xl poppins-font sm:text-4xl mb-5 font-bold  text-black text-center py-4">My  <span className="text-teal-600">Skills</span></h1>
+            <div className="container w-11/12 overflow-x-hidden md:max-w-11/14  p-4 mx-auto text-center">
+                {/* Navigation */}
+                <div className="hidden lg:flex lg:justify-center mb-8 space-x-4">
+                    {categories.map((cat) => (
+                        <button
+                            key={cat}
+                            onClick={() => {
+                                setSelectedCategory(cat);
+                                setShowAll(false); // reset when category changes
+                            }}
+                            className={`px-4 py-2 rounded-lg font-medium transition ${selectedCategory === cat
+                                ? "bg-white shadow text-purple-600"
+                                : "bg-purple-100 text-gray-600 hover:bg-white"
+                                }`}
+                        >
+                            {cat}
+                        </button>
+                    ))}
                 </div>
 
-                {/* Main content */}
-                <div className="relative z-10 flex flex-col items-center w-full max-w-4xl font-sans text-center">
-                    <svg
-                        className="w-16 h-16 text-cyan-400 mb-4 mx-auto"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
+                {/* Skills Grid */}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={selectedCategory + (showAll ? "-all" : "-short")}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.4 }}
+                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
                     >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
-                        />
-                    </svg>
+                        {itemsToShow.map((skill, index) => (
+                            <motion.div
+                                key={index}
+                                whileHover={{ scale: 1.05 }}
+                                className="bg-white  rounded-xl shadow-md p-6 flex flex-col items-center hover:shadow-lg transition hover:border-2 hover:border-teal-600"
+                            >
+                                {skill.icon}
+                                <p className="mt-3 text-gray-800 font-medium">{skill.name}</p>
+                                <p className="h-2 w-full bg-teal-600 my-2 rounded-full"></p>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </AnimatePresence>
 
-                    <div className="h-16 w-px border-l-2 border-dotted border-cyan-400 mb-4 mx-auto"></div>
-
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">Skills</h2>
-                    <p className="text-gray-400 mb-12 max-w-xl mx-auto">
-                        I am striving to never stop learning and improving
+                {/* Show More / Hide button */}
+                {skillsData[selectedCategory].length > 8 && (
+                    <p
+                        onClick={() => setShowAll(!showAll)}
+                        className="mt-8 w-full text-black border-b-gray-500 font-bold text-gray-600 border-b-2 rounded-lg transition"
+                    >
+                        {showAll ? "<Hide>" : "<Show More>"}
                     </p>
+                )}
 
-                    <div className="w-full  mb-16">
-                        <Slider {...settings}>
-                            {skillsData.map(({ name, bgColor, textColor, shadowColor, svg }) => (
-                                <div
-                                    key={name}
-                                    className="px-3 md:px-4 lg:px-5" // Gap changes with screen size
-                                >
-                                    <div
-                                        className={`flex flex-col items-center justify-center p-6 rounded-xl cursor-pointer ${bgColor} ${textColor} shadow-lg ${shadowColor} transition-transform duration-300 hover:scale-105 select-none`}
-                                    >
-                                        {svg}
-                                        <p className="mt-3 font-semibold">{name}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </Slider>
-                    </div>
+            </div>
 
-                    {/* Repeat same skills in a simple horizontal scroll container for smaller screens (optional) */}
-                </div>
-            </section>
-        </div>
+
+
+
+
+        </section>
     );
 };
 

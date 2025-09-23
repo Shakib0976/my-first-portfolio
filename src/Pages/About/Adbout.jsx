@@ -16,10 +16,10 @@ const Adbout = () => {
     }, []);
 
     return (
-        <div className="text-black min-h-screen mx-auto max-w-11/14 px-4 py-12 flex flex-col-reverse lg:flex-row-reverse items-center lg:items-start gap-12">
+        <div className="text-black  overflow-x-hidden mx-auto w-11/12 md:max-w-11/14 px-4 py-10 lg:py-20 flex flex-col-reverse lg:flex-row-reverse items-center lg:items-start gap-12">
 
             {/* Timeline */}
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 ">
                 <div className="relative pl-8 sm:pl-12">
                     {/* Vertical line */}
                     <div className="absolute left-4 sm:left-6 top-0 h-full border-l-2 border-red-500"></div>
@@ -52,16 +52,16 @@ const Adbout = () => {
                     </div>
 
                     {/* Stats */}
-                    <div data-aos="fade-left" className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        <div className="bg-white/40 rounded-2xl shadow p-6 text-center">
+                    <div data-aos="fade-left" className="mt-10  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        <div className="bg-white rounded-2xl shadow p-6 text-center">
                             <div className="text-2xl font-bold text-teal-600">2+</div>
                             <div className="text-gray-600">Years Experience</div>
                         </div>
-                        <div className="bg-white/40 rounded-2xl shadow p-6 text-center">
+                        <div className="bg-white rounded-2xl shadow p-6 text-center">
                             <div className="text-2xl font-bold text-teal-600">10+</div>
                             <div className="text-gray-600">Projects Completed</div>
                         </div>
-                        <div className="bg-white/40 rounded-2xl shadow p-6 text-center">
+                        <div className="bg-white rounded-2xl shadow p-6 text-center">
                             <div className="text-2xl font-bold text-teal-600">40K+</div>
                             <div className="text-gray-600">Lines of Code</div>
                         </div>
@@ -71,12 +71,13 @@ const Adbout = () => {
 
             {/* About Section */}
             <div data-aos="fade-up" className="w-full lg:w-1/2">
+                <h1 className='text-xl border-b pb-2 mb-4 w-30 text-teal-600'>About Me</h1>
                 <h1 className="text-3xl poppins-font sm:text-4xl font-bold mb-4">
-                    About <span className="text-teal-600">Me</span>
+                    Who  <span className="text-teal-600">Iam ?</span>
                 </h1>
 
                 <p className="text-gray-700 mb-6 text-sm sm:text-base">
-                    I am a passionate Frontend Developer with expertise in the MERN stack,
+                    I am a passionate <span className='text-blue-400'>Frontend Developer</span> with expertise in the <span className='text-green-400'>MERN stack</span>,
                     dedicated to creating seamless digital experiences that marry elegant design
                     with robust functionality. My expertise spans the modern web development ecosystem,
                     with deep proficiency in React, Tailwind CSS, Node.js, Express.js, and MongoDB.
@@ -103,7 +104,7 @@ const Adbout = () => {
                     to="/#contact"
                     className="flex items-center gap-2 w-40 bg-gradient-to-r from-teal-400 to-teal-600 hover:text-black px-4 py-2 rounded shadow text-teal-100 text-sm sm:text-base"
                 >
-                     <Mail className="w-4 h-4" /> Contact Me
+                    <Mail className="w-4 h-4" /> Contact Me
                 </HashLink>
             </div>
         </div>

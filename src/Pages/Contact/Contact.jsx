@@ -1,54 +1,192 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Contact = () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+    });
+
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100,
+        });
+    }, []);
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Form Data Submitted:", formData);
+        alert("Message sent!");
+        setFormData({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+        });
+    };
+
     return (
-        <div>
-            <section className="min-h-screen text-white py-12">
-                <div className="container mx-auto px-4 max-w-3xl text-center">
-                    <h2 className="text-4xl font-bold mb-6">Contact Me</h2>
-                    <p className="text-gray-400 mb-10">
-                        Have a project in mind or just want to say hello? Feel free to reach out — I’ll respond as soon as possible.
-                    </p>
+        <section className=" py-12 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+            <p
+                className="text-xl text-teal-700 border-b-2 text-center w-40 pb-2 mb-4 mx-auto"
+                data-aos="fade-down"
+            >
+                Contact
+            </p>
+            <h1
+                className="text-3xl mb-10 sm:text-4xl font-bold text-black text-center py-4"
+                data-aos="fade-up"
+            >
+                Get <span className="text-teal-600">In Touch</span>
+            </h1>
 
-                    <div className="bg-gray-800 rounded-lg shadow-lg p-8 space-y-4 text-left">
-                        {/* Email */}
-                        <div>
-                            <h3 className="text-lg font-semibold">Email:</h3>
-                            <a
-                                href="mailto:web.shakib09@gmail.com"
-                                className="text-teal-400 hover:underline"
-                            >
-                                web.shakib09@gmail.com
-                            </a>
+            <div
+                className="max-w-11/12 md:max-w-11/14 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start"
+                data-aos="fade-up overflow-x-hidden"
+            >
+                {/* Left Contact Card */}
+                <div
+                    className="bg-white text-black rounded-2xl p-4 md:p-6 sm:p-8 shadow-lg"
+                    data-aos="fade-right"
+                >
+                    <div className="flex flex-col items-center text-center">
+                        <div className="w-24 h-24 rounded-full overflow-hidden ring-4 ring-white mb-4">
+                            <img
+                                src="https://i.ibb.co.com/GQhkTh80/sk8-24-at-09-22-28-1cea5aae.jpg"
+                                alt="Profile"
+                                className="w-full h-full object-cover"
+                            />
                         </div>
 
-                        {/* Phone */}
-                        <div>
-                            <h3 className="text-lg font-semibold">Phone:</h3>
-                            <a
-                                href="tel:+08801727487419"
-                                className="text-teal-400 hover:underline"
-                            >
-                                +08801727487419
-                            </a>
-                        </div>
+                        <h2 className="text-2xl font-bold">Md. Sakib Khan Noyon</h2>
+                        <p className="text-teal-600 font-semibold">FullStack Web Developer</p>
+                        <p className="text-gray-500 text-sm mt-3">
+                            Feel free to reach out for opportunities, collaborations, or just
+                            to say hi! I'm always open to discussing new projects and ideas.
+                        </p>
 
-                        {/* WhatsApp (Optional) */}
-                        <div>
-                            <h3 className="text-lg font-semibold">WhatsApp:</h3>
-                            <a
-                                href="https://wa.me/01727487419"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-teal-400 hover:underline"
+                        <div className="mt-6 w-full space-y-4">
+                            {/* inner card */}
+                            <div
+                                className="flex items-center bg-gray-100 px-4 py-3 rounded-lg transition-colors duration-700 ease-in-out hover:bg-teal-50"
+                                data-aos="fade-right"
                             >
-                                Chat on WhatsApp
-                            </a>
+                                <div className="bg-teal-500 p-2 rounded-lg mr-4 text-white text-xl">
+                                    📞
+                                </div>
+                                <div className="text-left">
+                                    <p className="text-xs text-gray-600">Phone</p>
+                                    <p>(+880) 1727487419</p>
+                                </div>
+                            </div>
+
+                            <div
+                                className="flex items-center bg-gray-100 px-4 py-3 rounded-lg transition-colors duration-700 ease-in-out hover:bg-teal-50"
+                                data-aos="fade-right"
+                            >
+                                <div className="bg-teal-500 p-2 rounded-lg mr-4 text-white text-xl">
+                                    📧
+                                </div>
+                                <div className="text-left">
+                                    <p className="text-xs text-gray-600">Email</p>
+                                    <p>web.shakib09@gmail.com</p>
+                                </div>
+                            </div>
+
+                            <div
+                                className="flex items-center bg-gray-100 px-4 py-3 rounded-lg transition-colors duration-700 ease-in-out hover:bg-teal-50"
+                                data-aos="fade-right"
+                            >
+                                <div className="bg-teal-500 p-2 rounded-lg mr-4 text-white text-xl">
+                                    📍
+                                </div>
+                                <div className="text-left">
+                                    <p className="text-xs text-gray-600">Location</p>
+                                    <p>Sylhet, Bangladesh</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+
+
+                {/* Right Contact Form */}
+                <form
+                    onSubmit={handleSubmit}
+                    className="bg-white text-black rounded-2xl p-4 md:p-6 sm:p-8 shadow-lg space-y-6"
+                    data-aos="fade-left"
+                >
+                    <h2 className="text-2xl font-bold">Send Me A Message</h2>
+                    <p className="text-sm text-gray-400">
+                        Have a project in mind? Fill out the form below and I'll get back to
+                        you as soon as possible.
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Full Name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            className="bg-gray-100 text-gray-600 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-600 w-full"
+                        />
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email Address"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            className="bg-gray-100 text-gray-600 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-600 w-full"
+                        />
+                    </div>
+
+                    <input
+                        type="text"
+                        name="subject"
+                        placeholder="Subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                        className="bg-gray-100 text-gray-600 border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-teal-600"
+                    />
+
+                    <div>
+                        <textarea
+                            name="message"
+                            rows="5"
+                            placeholder="Your Message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            required
+                            maxLength="1000"
+                            className="bg-gray-100 text-gray-600 border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-teal-600"
+                        ></textarea>
+                        <p className="text-right text-xs text-gray-500 mt-1">
+                            {formData.message.length}/1000 characters
+                        </p>
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="w-full bg-gradient-to-r from-teal-400 to-teal-600 hover:from-teal-500 hover:to-teal-700 cursor-pointer px-4 py-2 rounded shadow text-white font-semibold transition"
+                    >
+                        Send Message &nbsp; ➤
+                    </button>
+                </form>
+            </div>
+        </section>
     );
 };
 

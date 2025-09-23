@@ -1,6 +1,7 @@
 /* Tailwind import (only if you're using Tailwind) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
+@plugin "daisyui";
 .poppins-font {
   font-family: "Poppins", sans-serif;
   font-style: normal;
@@ -67,3 +68,5 @@ body {
   transform-origin: 70% 70%;
   animation: wave 2s infinite;
 }
+
+

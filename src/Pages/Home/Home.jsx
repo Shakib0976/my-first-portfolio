@@ -7,6 +7,7 @@ import Adbout from '../About/Adbout';
 import Skills from '../Skills/Skills';
 import Project from '../Project/Project';
 import Contact from '../Contact/Contact';
+import Education from '../Education/Education'
 
 const Home = () => {
     const words = ["a MERN Stack Developer", "a Frontend Specialist"];
@@ -38,7 +39,7 @@ const Home = () => {
     return (
         <div className="text-gray-200 font-sans inter-font">
             {/* hero section */}
-            <section id="home" className="min-h-screen w-11/12 scroll-mt-20 sm:px-4 mx-auto py-10">
+            <section id="home" className="min-h-screen overflow-x-hidden w-11/12 scroll-mt-20 sm:px-4 mx-auto py-10">
                 {/* mobile heading */}
 
 
@@ -84,7 +85,7 @@ const Home = () => {
                             initial={{ x: 0 }}
                             animate={{ x: [0, 10, 0] }}
                             transition={{ duration: 2.5, repeat: Infinity }}
-                            className="absolute -right-10 sm:-right-16 lg:-right-24 top-1/5 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
+                            className="absolute -right-20 md:-right-16 lg:-right-24 top-1/5 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
                         >
                             MERN Stack Developer
                         </motion.div>
@@ -106,7 +107,7 @@ const Home = () => {
                         <p className="text-2xl poppins-font text-gray-800  sm:text-3xl md:text-4xl lg:text-6xl font-semibold leading-snug">
 
                             <span class="text-gray-800 text-lg md:text-3xl font-bold">Hi</span>
-                            <span class="wave inline-block text-xl md:text-4xl animate-wave">👋</span>
+                            <span class="wave inline-block text-xl ml-2 md:text-4xl animate-wave">👋</span>
                             <br /> I’m <span className="text-teal-600"> Md. Shakib </span><br />
                             <span className="mt-2 h-10 block inter-font text-2xl text-gray-700 font-semibold">{text}|</span>
                         </p>
@@ -122,9 +123,10 @@ const Home = () => {
                             <a
                                 href="/Shakib.Resume.docx (5).pdf"
                                 download
-                                className="flex items-center gap-2 bg-gradient-to-r from-teal-400 to-teal-600 hover:text-black px-4 py-2 rounded shadow text-teal-100 text-sm sm:text-base"
+                                className="group flex items-center gap-2 bg-gradient-to-r from-teal-400 to-teal-600 px-4 py-2 rounded shadow text-teal-100 text-sm sm:text-base transition-all duration-300"
                             >
-                                Download CV <FaDownload />
+                                Download CV
+                                <FaDownload className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-1" />
                             </a>
                         </div>
                     </div>
@@ -144,6 +146,10 @@ const Home = () => {
             {/* projects section */}
             <section id="projects" className="scroll-mt-20">
                 <Project />
+            </section>
+
+            <section id="education" className="scroll-mt-20">
+                <Education />
             </section>
 
             {/* contact section */}

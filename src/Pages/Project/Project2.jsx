@@ -3,10 +3,10 @@ import React from 'react';
 const Project2 = () => {
     return (
         <div>
-            <div className="bg-gray-900 text-white min-h-screen py-12 px-4">
-                <div className="max-w-4xl mx-auto">
-                    <h1 className="text-4xl font-bold mb-4">Dev Knowledge</h1>
-                    <img src="https://i.ibb.co.com/d4kT2tK5/Screenshot-2025-08-08-190459.png" alt="Project 2" className="w-full rounded-lg mb-6" />
+            <div className="text-gray-800 min-h-screen py-12 px-4">
+                <div className="max-w-4xl mx-auto bg-white/50 p-4 my-10 rounded-2xl shadow-xl">
+                    <h1 className="text-xl md:text-2xl lg:text-4xl font-bold mb-4">Dev Knowledge</h1>
+                    <img src="https://i.ibb.co.com/d4kT2tK5/Screenshot-2025-08-08-190459.png" alt="Project 2" className="w-full rounded-lg border p-1 border-gray-600 mb-6" />
 
                     <h2 className="text-xl font-semibold mb-2">Technology Stack:</h2>
                     <ul className="list-disc list-inside mb-6">
@@ -23,7 +23,7 @@ const Project2 = () => {
                         <a href="https://devknowledge-5ed93.web.app/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-teal-500 rounded hover:bg-teal-600">
                             Live Project
                         </a>
-                        <a href="https://github.com/Shakib0976/Dev_Knowledge11" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-gray-700 rounded hover:bg-gray-600">
+                        <a href="https://github.com/Shakib0976/Dev_Knowledge11" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600">
                             GitHub (Client)
                         </a>
                     </div>
