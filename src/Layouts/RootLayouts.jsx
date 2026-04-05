@@ -1,149 +1,313 @@
-import { LucideGraduationCap } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
-import { FaBars, FaCode, FaEnvelope, FaFacebook, FaGithub, FaHome, FaLinkedin, FaProjectDiagram, FaTimes, FaUser } from 'react-icons/fa';
-import { NavLink, Outlet } from 'react-router';
-import { HashLink } from 'react-router-hash-link';
-import Loader from '../Components/Loader.jsx'; // 👈 import loader
+import { LucideGraduationCap } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import {
+  FaBars,
+  FaCode,
+  FaEnvelope,
+  FaFacebook,
+  FaGithub,
+  FaHome,
+  FaLinkedin,
+  FaProjectDiagram,
+  FaTimes,
+  FaUser,
+} from "react-icons/fa";
+import { NavLink, Outlet } from "react-router";
+import { HashLink } from "react-router-hash-link";
+import Loader from "../Components/Loader.jsx"; // 👈 import loader
 
 const RootLayouts = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [loading, setLoading] = useState(true); // 👈 global loading state
+  const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(true); // 👈 global loading state
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
+  useEffect(() => {
+    // here you can wait for auth, API, etc.
+    const timer = setTimeout(() => setLoading(false), 1500); // 1.5s splash
+    return () => clearTimeout(timer);
+  }, []);
 
-    useEffect(() => {
-        // here you can wait for auth, API, etc.
-        const timer = setTimeout(() => setLoading(false), 1500); // 1.5s splash
-        return () => clearTimeout(timer);
-    }, []);
+  if (loading) {
+    return <Loader />; // 👈 show spinner until finished
+  }
 
-    if (loading) {
-        return <Loader />; // 👈 show spinner until finished
+  // after loading is false, render your full layout:
+  const navItems = [
+    {
+      to: "https://www.linkedin.com/feed/",
+      target: "_blank",
+      label: "LinkedIn",
+      icon: <FaLinkedin />,
+    },
+    {
+      to: "https://github.com/Shakib0976",
+      target: "_blank",
+      label: "GitHub",
+      icon: <FaGithub />,
+    },
+    {
+      to: "https://www.facebook.com/md.shakib.khan.809698",
+      target: "_blank",
+      label: "Facebook",
+      icon: <FaFacebook />,
+    },
+    { to: "/", label: "Home", icon: <FaHome /> },
+  ];
+
+  const navItemsV = [
+    {
+      to: "/#home",
+      label: "Home",
+      icon: (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="black"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ width: 20, height: 20 }}
+        >
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      ),
+    },
+    {
+      to: "/#about",
+      label: "About",
+      icon: (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="black"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ width: 20, height: 20 }}
+        >
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      ),
+    },
+    {
+      to: "/#skills",
+      label: "Skills",
+      icon: (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="black"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ width: 20, height: 20 }}
+        >
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+        </svg>
+      ),
+    },
+    {
+      to: "/#projects",
+      label: "Projects",
+      icon: (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="black"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ width: 20, height: 20 }}
+        >
+          <rect x="2" y="3" width="6" height="6" rx="1" />
+          <rect x="16" y="3" width="6" height="6" rx="1" />
+          <rect x="2" y="15" width="6" height="6" rx="1" />
+          <path d="M14 6h4v1a4 4 0 01-4 4H9" />
+          <path d="M5 15v-3a4 4 0 014-4h1" />
+        </svg>
+      ),
+    },
+    {
+      to: "/#education",
+      label: "Education",
+      icon: (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="black"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ width: 20, height: 20 }}
+        >
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+          <path d="M6 12v5c3 3 9 3 12 0v-5" />
+        </svg>
+      ),
+    },
+    {
+      to: "/#contact",
+      label: "Contact",
+      icon: (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="black"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ width: 20, height: 20 }}
+        >
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+      ),
+    },
+  ];
+
+  const getScale = (itemIndex) => {
+    // Hover state
+    if (hoveredIndex !== null) {
+      const dist = Math.abs(hoveredIndex - itemIndex);
+      if (dist === 0) return "scale-150"; // hovered icon — full scale
+      if (dist === 1) return "scale-115"; // পাশের icon — mid scale
+      return "scale-100"; // বাকিগুলো normal
     }
-
-    // after loading is false, render your full layout:
-    const navItems = [
-        { to: "https://www.linkedin.com/feed/", target: "_blank", label: "LinkedIn", icon: <FaLinkedin /> },
-        { to: "https://github.com/Shakib0976", target: "_blank", label: "GitHub", icon: <FaGithub /> },
-        { to: "https://www.facebook.com/md.shakib.khan.809698", target: "_blank", label: "Facebook", icon: <FaFacebook /> },
-        { to: "/", label: "Home", icon: <FaHome /> },
-    ];
-
-    const navItemsV = [
-        { to: "/#home", icon: <FaHome color='black' />, label: "Home" },
-        { to: "/#about", icon: <FaUser color='black' />, label: "About" },
-        { to: "/#skills", icon: <FaCode color='black' />, label: "Skills" },
-        { to: "/#projects", icon: <FaProjectDiagram color='black' />, label: "Projects" },
-        { to: "/#education", icon: <LucideGraduationCap color='black' />, label: "Education" },
-        { to: "/#contact", icon: <FaEnvelope color='black' />, label: "Contact" },
-    ];
-
-    return (
-        <div className='bg-gradient-to-r from-blue-400/5 via-purple-400/5 to-teal-400/5 '>
-            {/* sidebar */}
-            <aside>
-                <div className="fixed top-1/2 left-5 hidden mt-10 -translate-y-1/2 lg:flex flex-col items-center bg-gradient-to-b from-blue-500/30 via-purple-500/30 to-teal-500/30 text-white border border-gray-200 rounded-full p-2 shadow-lg z-50">
-                    {navItemsV.map(({ to, icon, label }) => (
-                        <HashLink
-                            smooth
-                            key={to}
-                            to={to}
-                            className="group relative w-10 h-[8vh] flex items-center justify-center rounded-full mb-3 hover:bg-gray-950/20 transition-colors duration-300"
-                        >
-                            {icon}
-                            <span
-                                className="absolute left-full top-1/2 ml-3 -translate-y-1/2 
-                whitespace-nowrap rounded bg-slate-950/40 text-teal-300 font-bold px-3 py-2 text-sm 
-                opacity-0 group-hover:opacity-100 pointer-events-none
-                transition-opacity duration-300
-                select-none"
-                            >
-                                {label}
-                            </span>
-                        </HashLink>
-                    ))}
-                </div>
-            </aside>
-
-            {/* main */}
-            <main>
-                <header className="bg-gradient-to-r from-white/90 via-purple-100/90 to-teal-100/90 sticky top-0  z-50 text-gray-800 px-6 md:px-20 py-6  shadow-lg">
-                    <div className="flex  justify-between items-center">
-                        {/* Logo */}
-                        <h1 className="text-lg md:text-xl font-bold text-teal-600">
-                            &lt;C/&gt; Md . Shakib
-                        </h1>
-
-                        {/* Desktop Menu */}
-                        <nav className="hidden md:flex items-center gap-6">
-                            {navItems.map(({ to, target, label, icon }) => (
-                                <NavLink
-                                    key={to}
-                                    target={target}
-                                    to={to}
-                                    className={({ isActive }) =>
-                                        `flex items-center gap-1 text-lg font-semibold hover:text-teal-400 transition-colors duration-200 ${isActive ? "text-teal-600" : ""}`
-                                    }
-                                >
-                                    {icon} {label}
-                                </NavLink>
-                            ))}
-                        </nav>
-
-                        {/* Mobile Menu Button */}
-                        <button
-                            className="md:hidden text-gray-600 text-2xl"
-                            onClick={() => setIsOpen(!isOpen)}
-                        >
-                            {isOpen ? <FaTimes /> : <FaBars />}
-                        </button>
-                    </div>
-
-                    {/* Mobile Dropdown Menu */}
-                    {isOpen && (
-                        <div className="md:hidden mt-4 flex flex-col gap-4 border-t border-gray-700 pt-4">
-                            {navItems.map(({ to, label, icon }) => (
-                                <NavLink
-                                    key={to}
-                                    to={to}
-                                    onClick={() => setIsOpen(false)}
-                                    className={({ isActive }) =>
-                                        `flex items-center gap-2 hover:text-blue-400 transition-colors duration-200 ${isActive ? "text-blue-400" : ""}`
-                                    }
-                                >
-                                    {icon} {label}
-                                </NavLink>
-                            ))}
-                        </div>
-                    )}
-                </header>
-
-                {/* Only render the route content */}
-                <Outlet />
-            </main>
-
-            {/* footer */}
-            <footer className="bg-white text-black py-5 border-t-2 border-gray-300">
-                <div className="container mx-auto justify-center  px-4 flex flex-col md:flex-row  items-center">
-                    <div className='flex flex-col-reverse gap-5 justify-center items-center'>
-                        <p className="text-sm mb-4 md:mb-0">
-                            © 2025 - All rights reserved by <span className="font-semibold">Shakib</span>
-                        </p>
-
-                        <div className="flex space-x-5 ">
-                            <a href="https://www.facebook.com/md.shakib.khan.809698" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors duration-300">
-                                <FaFacebook size={25} />
-                            </a>
-                            <a href="https://www.linkedin.com/in/shakib09/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors duration-300">
-                                <FaLinkedin size={25} />
-                            </a>
-                            <a href="https://github.com/Shakib0976" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition-colors duration-300">
-                                <FaGithub size={25} />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+    // Active (clicked) state
+    if (activeIndex === itemIndex) return "scale-130";
+    return "scale-100";
+  };
+  return (
+    <div className="bg-gradient-to-r from-blue-400/5 via-purple-400/5 to-teal-400/5 ">
+      {/* sidebar */}
+      <aside>
+        <div className="fixed hover:scale-110 duration-300 gap-2 py-6 px-2 top-1/2 left-5 hidden mt-10 -translate-y-1/2 lg:flex flex-col items-center bg-gradient-to-b from-blue-500/30 via-purple-500/30 to-teal-500/30 text-white border border-gray-200 rounded-full shadow-lg z-50">
+          {navItemsV.map(({ to, icon, label }, index) => (
+            <HashLink
+              smooth
+              key={to}
+              to={to}
+              className={`
+            group relative rounded-full p-2 my-2
+            transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]
+            hover:bg-gray-950/10
+            ${getScale(index)}
+          `}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              onClick={() =>
+                setActiveIndex((prev) => (prev === index ? null : index))
+              }
+            >
+              {icon}
+              <span className="absolute left-full top-1/2 ml-1 -translate-y-1/2 whitespace-nowrap rounded bg-slate-950/40 text-teal-300 font-bold p-1 text-sm opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 select-none">
+                {label}
+              </span>
+            </HashLink>
+          ))}
         </div>
-    );
+      </aside>
+
+      {/* main */}
+      <main>
+        <header className="bg-gradient-to-r from-white/90 via-purple-100/90 to-teal-100/90 sticky top-0  z-50 text-gray-800 px-6 md:px-20 py-6  shadow-lg">
+          <div className="flex  justify-between items-center">
+            {/* Logo */}
+            <h1 className="text-lg md:text-xl font-bold text-teal-600">
+              &lt;C/&gt; Md . Shakib
+            </h1>
+
+            {/* Desktop Menu */}
+            <nav className="hidden md:flex items-center gap-6">
+              {navItems.map(({ to, target, label, icon }) => (
+                <NavLink
+                  key={to}
+                  target={target}
+                  to={to}
+                  className={({ isActive }) =>
+                    `flex items-center gap-1 text-lg font-semibold hover:text-teal-400 transition-colors duration-200 ${isActive ? "text-teal-600" : ""}`
+                  }
+                >
+                  {icon} {label}
+                </NavLink>
+              ))}
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-gray-600 text-2xl"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
+
+          {/* Mobile Dropdown Menu */}
+          {isOpen && (
+            <div className="md:hidden mt-4 flex flex-col gap-4 border-t border-gray-700 pt-4">
+              {navItems.map(({ to, label, icon }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  onClick={() => setIsOpen(false)}
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 hover:text-blue-400 transition-colors duration-200 ${isActive ? "text-blue-400" : ""}`
+                  }
+                >
+                  {icon} {label}
+                </NavLink>
+              ))}
+            </div>
+          )}
+        </header>
+
+        {/* Only render the route content */}
+        <Outlet />
+      </main>
+
+      {/* footer */}
+      <footer className="bg-white text-black py-5 border-t-2 border-gray-300">
+        <div className="container mx-auto justify-center  px-4 flex flex-col md:flex-row  items-center">
+          <div className="flex flex-col-reverse gap-5 justify-center items-center">
+            <p className="text-sm mb-4 md:mb-0">
+              © 2025 - All rights reserved by{" "}
+              <span className="font-semibold">Shakib</span>
+            </p>
+
+            <div className="flex space-x-5 ">
+              <a
+                href="https://www.facebook.com/md.shakib.khan.809698"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-500 transition-colors duration-300"
+              >
+                <FaFacebook size={25} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/shakib09/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-400 transition-colors duration-300"
+              >
+                <FaLinkedin size={25} />
+              </a>
+              <a
+                href="https://github.com/Shakib0976"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-400 transition-colors duration-300"
+              >
+                <FaGithub size={25} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
 };
 
 export default RootLayouts;

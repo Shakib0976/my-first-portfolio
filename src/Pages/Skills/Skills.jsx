@@ -1,152 +1,147 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Code2, Github, GithubIcon, Sparkles } from "lucide-react";
 import {
-    FaReact, FaNodeJs, FaTools, FaUserTie
-} from "react-icons/fa";
-import {
-    SiRedux, SiJavascript, SiHtml5, SiCss3, SiTailwindcss,
-    SiStyledcomponents, SiExpress, SiMongodb, SiJsonwebtokens, SiFirebase,
-    SiGithub, SiVercel, SiFigma
+    SiHtml5,
+    SiCss3,
+    SiJavascript,
+    SiReact,
+    SiNextdotjs,
+    SiNodedotjs,
+    SiMongodb,
+    SiGit,
+    SiTypescript,
+    SiPython,
+    SiFigma,
+    SiTailwindcss
 } from "react-icons/si";
 
-const skillsData = {
-    All: [
-        { name: "HTML", icon: <SiHtml5 className="text-3xl text-purple-500" /> },
-        { name: "CSS", icon: <SiCss3 className="text-3xl text-purple-500" /> },
-        { name: "JavaScript", icon: <SiJavascript className="text-3xl text-purple-500" /> },
-        { name: "ReactJs", icon: <FaReact className="text-3xl text-purple-500" /> },
-        { name: "Tailwind CSS", icon: <SiTailwindcss className="text-3xl text-purple-500" /> },
-        { name: "Styled Component", icon: <SiStyledcomponents className="text-3xl text-purple-500" /> },
-        { name: "Node.js", icon: <FaNodeJs className="text-3xl text-purple-500" /> },
-        { name: "ExpressJs", icon: <SiExpress className="text-3xl text-purple-500" /> },
-        { name: "MongoDB", icon: <SiMongodb className="text-3xl text-purple-500" /> },
-        { name: "Mongoose", icon: <SiMongodb className="text-3xl text-purple-500" /> },
-        { name: "REST APIs", icon: <SiRedux className="text-3xl text-purple-500" /> },
-        { name: "JWT", icon: <SiJsonwebtokens className="text-3xl text-purple-500" /> },
-        { name: "Firebase", icon: <SiFirebase className="text-3xl text-purple-500" /> },
-        { name: "GitHub", icon: <SiGithub className="text-3xl text-purple-500" /> },
-        { name: "GitHub Actions", icon: <SiGithub className="text-3xl text-purple-500" /> },
-        { name: "AI Integration", icon: <FaTools className="text-3xl text-purple-500" /> },
-        { name: "Firebase", icon: <SiFirebase className="text-3xl text-purple-500" /> },
-        { name: "Vercel", icon: <SiVercel className="text-3xl text-purple-500" /> },
-        { name: "Figma", icon: <SiFigma className="text-3xl text-purple-500" /> },
-        { name: "Project Management", icon: <FaUserTie className="text-3xl text-purple-500" /> },
-        { name: "Team Leadership", icon: <FaUserTie className="text-3xl text-purple-500" /> },
-        { name: "Communication", icon: <FaUserTie className="text-3xl text-purple-500" /> },
-        { name: "Problem Solving", icon: <FaUserTie className="text-3xl text-purple-500" /> },
-        { name: "Decision Making", icon: <FaUserTie className="text-3xl text-purple-500" /> },
-        { name: "Adaptability", icon: <FaUserTie className="text-3xl text-purple-500" /> },
-    ],
-    Frontend: [
-        { name: "HTML", icon: <SiHtml5 className="text-3xl text-purple-500" /> },
-        { name: "CSS", icon: <SiCss3 className="text-3xl text-purple-500" /> },
-        { name: "JavaScript", icon: <SiJavascript className="text-3xl text-purple-500" /> },
-        { name: "ReactJs", icon: <FaReact className="text-3xl text-purple-500" /> },
-        { name: "Tailwind CSS", icon: <SiTailwindcss className="text-3xl text-purple-500" /> },
-        { name: "Styled Component", icon: <SiStyledcomponents className="text-3xl text-purple-500" /> },
-    ],
-    Backend: [
-        { name: "Node.js", icon: <FaNodeJs className="text-3xl text-purple-500" /> },
-        { name: "ExpressJs", icon: <SiExpress className="text-3xl text-purple-500" /> },
-        { name: "MongoDB", icon: <SiMongodb className="text-3xl text-purple-500" /> },
-        { name: "Mongoose", icon: <SiMongodb className="text-3xl text-purple-500" /> },
-        { name: "REST APIs", icon: <SiRedux className="text-3xl text-purple-500" /> },
-        { name: "JWT", icon: <SiJsonwebtokens className="text-3xl text-purple-500" /> },
-        { name: "Firebase", icon: <SiFirebase className="text-3xl text-purple-500" /> },
-    ],
-    Tools: [
-        { name: "GitHub", icon: <SiGithub className="text-3xl text-purple-500" /> },
-        { name: "GitHub Actions", icon: <SiGithub className="text-3xl text-purple-500" /> },
-        { name: "AI Integration", icon: <FaTools className="text-3xl text-purple-500" /> },
-        { name: "Firebase", icon: <SiFirebase className="text-3xl text-purple-500" /> },
-        { name: "Vercel", icon: <SiVercel className="text-3xl text-purple-500" /> },
-        { name: "Figma", icon: <SiFigma className="text-3xl text-purple-500" /> },
-    ],
-    SoftSkills: [
-        { name: "Project Management", icon: <FaUserTie className="text-3xl text-purple-500" /> },
-        { name: "Team Leadership", icon: <FaUserTie className="text-3xl text-purple-500" /> },
-        { name: "Communication", icon: <FaUserTie className="text-3xl text-purple-500" /> },
-        { name: "Problem Solving", icon: <FaUserTie className="text-3xl text-purple-500" /> },
-        { name: "Decision Making", icon: <FaUserTie className="text-3xl text-purple-500" /> },
-        { name: "Adaptability", icon: <FaUserTie className="text-3xl text-purple-500" /> },
-    ],
-};
 
-const Skills = () => {
-    const [selectedCategory, setSelectedCategory] = useState("All");
-    const [showAll, setShowAll] = useState(false); // new state
-    const categories = ["All", "Frontend", "Backend", "Tools", "SoftSkills"];
+export default function SkillsSection() {
+    const skills = [
+        { name: "HTML5", icon: SiHtml5, color: "text-orange-500" },
+        { name: "CSS3", icon: SiCss3, color: "text-blue-500" },
+        { name: "JavaScript", icon: SiJavascript, color: "text-yellow-500" },
+        { name: "React", icon: SiReact, color: "text-cyan-400" },
+        { name: "Next.js", icon: SiNextdotjs, color: "text-gray-800" },
+        { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-teal-400" },
+        { name: "Node.js", icon: SiNodedotjs, color: "text-green-500" },
+        { name: "MongoDB", icon: SiMongodb, color: "text-green-600" },
+        { name: "Git", icon: SiGit, color: "text-orange-600" },
+        { name: "TypeScript", icon: SiTypescript, color: "text-blue-600" },
+        { name: "Figma", icon: SiFigma, color: "text-purple-500" },
+    ];
+    // Duplicate skills array for infinite scroll
+    const loopSkills = [...skills, ...skills];
 
-    // show only first 8 (2 rows x 4 cols) if showAll = false
-    const itemsToShow = showAll
-        ? skillsData[selectedCategory]
-        : skillsData[selectedCategory].slice(0, 12);
 
     return (
-        <section className="py-12">
-            <h1 className="text-3xl poppins-font sm:text-4xl mb-5 font-bold  text-black text-center py-4">My  <span className="text-teal-600">Skills</span></h1>
-            <div className="container w-11/12 overflow-x-hidden md:max-w-11/14  p-4 mx-auto text-center">
-                {/* Navigation */}
-                <div className="hidden lg:flex lg:justify-center mb-8 space-x-4">
-                    {categories.map((cat) => (
-                        <button
-                            key={cat}
-                            onClick={() => {
-                                setSelectedCategory(cat);
-                                setShowAll(false); // reset when category changes
-                            }}
-                            className={`px-4 py-2 rounded-lg font-medium transition ${selectedCategory === cat
-                                ? "bg-white shadow text-purple-600"
-                                : "bg-purple-100 text-gray-600 hover:bg-white"
-                                }`}
-                        >
-                            {cat}
-                        </button>
-                    ))}
+        <div className=" py-24 relative ">
+       
+
+
+            <div className="max-w-11/12 md:max-w-11/14 mx-auto px-6  overflow-hidden relative z-10">
+                {/* Header Section */}
+                <div className="text-center mb-16">
+                    <div className="inline-flex items-center gap-3 mb-4">
+                        <Code2 className="text-blue-500" size={32} weight="duotone" />
+                        <h2 className="text-4xl md:text-5xl text-gray-800 font-bold text-default">
+                            My <span className=" bg-clip-text">Skills</span>
+                        </h2>
+                        <Sparkles className="text-purple-500" size={32} weight="duotone" />
+                    </div>
+                    <div className="w-24 h-1 bg-linear-to-r from-blue-500 to-purple-500 mx-auto mb-6 rounded-full"></div>
+                    <p className="text-default  text-lg max-w-2xl mx-auto leading-relaxed">
+                        Technologies and tools I use to bring ideas to life and create amazing digital experiences.
+                    </p>
                 </div>
 
-                {/* Skills Grid */}
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={selectedCategory + (showAll ? "-all" : "-short")}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.4 }}
-                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
-                    >
-                        {itemsToShow.map((skill, index) => (
-                            <motion.div
-                                key={index}
-                                whileHover={{ scale: 1.05 }}
-                                className="bg-white  rounded-xl shadow-md p-6 flex flex-col items-center hover:shadow-lg transition hover:border-2 hover:border-teal-600"
-                            >
-                                {skill.icon}
-                                <p className="mt-3 text-gray-800 font-medium">{skill.name}</p>
-                                <p className="h-2 w-full bg-teal-600 my-2 rounded-full"></p>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </AnimatePresence>
 
-                {/* Show More / Hide button */}
-                {skillsData[selectedCategory].length > 8 && (
-                    <p
-                        onClick={() => setShowAll(!showAll)}
-                        className="mt-8 w-full text-black border-b-gray-500 font-bold text-gray-600 border-b-2 rounded-lg transition"
-                    >
-                        {showAll ? "<Hide>" : "<Show More>"}
-                    </p>
-                )}
+                {/* Main Slider Container */}
+                <div className="relative">
+                    {/* First Slider Row */}
+                    <div className="flex animate-scroll mb-8">
+                        {loopSkills.map((skill, index) => {
+                            const IconComponent = skill.icon;
+                            return (
+                                <div
+                                    key={index}
+                                    className="flex-shrink-0 mx-4 group"
+                                >
+                                    <div className="flex flex-col items-center justify-center p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 hover:shadow-2xl hover:border-blue-200/50 transition-all duration-500 min-w-[140px]">
+                                        <div className="relative mb-4">
+                                            <div className="absolute inset-0 bg-linear-to-r from-blue-500 to-purple-500 rounded-full opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500"></div>
+                                            <IconComponent
+                                                size={48}
+                                                className={`${skill.color}`}
+                                            />
+                                        </div>
+                                        <p className="text-gray-700 font-semibold text-center group-hover:text-gray-900 transition-colors duration-300">
+                                            {skill.name}
+                                        </p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
 
+
+                    {/* Second Slider Row (Reverse) */}
+                    <div className="flex animate-scroll-reverse ">
+                        {loopSkills.reverse().map((skill, index) => {
+                            const IconComponent = skill.icon;
+                            return (
+                                <div
+                                    key={index}
+                                    className="flex-shrink-0 mx-4 group"
+                                >
+                                    <div className="flex flex-col items-center justify-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-md border border-white/20 hover:shadow-xl hover:border-purple-200/50 transition-all duration-500 min-w-[140px]">
+                                        <div className="relative mb-4">
+                                            <div className="absolute inset-0 bg-linear-to-r from-purple-500 to-pink-500 rounded-full opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500"></div>
+                                            <IconComponent
+                                                size={48}
+                                                className={`${skill.color}`}
+                                            />
+                                        </div>
+                                        <p className="text-gray-600 font-medium text-center group-hover:text-gray-800 transition-colors duration-300">
+                                            {skill.name}
+                                        </p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+
+
+                {/* Skills Stats */}
+                <div className="text-center mt-16">
+                    <div className="inline-flex flex-wrap justify-center gap-8 bg-white/50 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                        <div className="text-center">
+                            <div className="text-2xl font-bold text-secondary bg-clip-text text-transparent">
+                                {skills.length}+
+                            </div>
+                            <div className="text-gray-600 text-sm font-medium">Technologies</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-2xl font-bold  text-secondary bg-clip-text text-transparent">
+                                2+
+                            </div>
+                            <div className="text-gray-600 text-sm font-medium">Years Experience</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-2xl font-bold  text-secondary bg-clip-text text-transparent">
+                                50+
+                            </div>
+                            <div className="text-gray-600 text-sm font-medium">Projects</div>
+                        </div>
+                        <div className="text-center">
+                            <GithubIcon size={24} className="text-gray-700  mx-auto mb-2" />
+                            <div className="text-gray-600 text-sm font-medium">Open Source</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-
-
-
-        </section>
+        </div>
     );
-};
+}
 
-export default Skills;
+

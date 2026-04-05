@@ -1,163 +1,170 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FaDownload } from 'react-icons/fa';
-import PixelTransition from '../../Components/PixelTransiction';
+import { FaDownload } from "react-icons/fa";
+import PixelTransition from "../../Components/PixelTransiction";
 
-import Adbout from '../About/Adbout';
-import Skills from '../Skills/Skills';
-import Project from '../Project/Project';
-import Contact from '../Contact/Contact';
-import Education from '../Education/Education'
+import Adbout from "../About/Adbout";
+import Skills from "../Skills/Skills";
+import Project from "../Project/Project";
+import Contact from "../Contact/Contact";
+import Education from "../Education/Education";
 
 const Home = () => {
-    const words = ["a MERN Stack Developer", "a Frontend Specialist"];
-    const [text, setText] = useState("");
-    const [wordIndex, setWordIndex] = useState(0);
-    const [isDeleting, setIsDeleting] = useState(false);
-    const [speed] = useState(150);
+  const words = ["a MERN Stack Developer", "a Frontend Specialist"];
+  const [text, setText] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [speed] = useState(150);
 
-    useEffect(() => {
-        const current = words[wordIndex];
-        const timeout = setTimeout(() => {
-            setText(
-                isDeleting
-                    ? current.substring(0, text.length - 1)
-                    : current.substring(0, text.length + 1)
-            );
+  useEffect(() => {
+    const current = words[wordIndex];
+    const timeout = setTimeout(() => {
+      setText(
+        isDeleting
+          ? current.substring(0, text.length - 1)
+          : current.substring(0, text.length + 1),
+      );
 
-            if (!isDeleting && text === current) {
-                setTimeout(() => setIsDeleting(true), 1000);
-            } else if (isDeleting && text === "") {
-                setIsDeleting(false);
-                setWordIndex((prev) => (prev + 1) % words.length);
-            }
-        }, speed);
+      if (!isDeleting && text === current) {
+        setTimeout(() => setIsDeleting(true), 1000);
+      } else if (isDeleting && text === "") {
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % words.length);
+      }
+    }, speed);
 
-        return () => clearTimeout(timeout);
-    }, [text, isDeleting, wordIndex, words, speed]);
+    return () => clearTimeout(timeout);
+  }, [text, isDeleting, wordIndex, words, speed]);
 
-    return (
-        <div className="text-gray-200 font-sans inter-font">
-            {/* hero section */}
-            <section id="home" className="min-h-screen overflow-x-hidden w-11/12 scroll-mt-20 sm:px-4 mx-auto py-10">
-                {/* mobile heading */}
+  return (
+    <div className="text-gray-200 font-sans inter-font">
+      {/* hero section */}
+      <section
+        id="home"
+        className="min-h-screen max-w-11/12 md:max-w-11/14 px-4 flex flex-col-reverse lg:flex-row items-center justify-between lg:gap-80 gap-10   scroll-mt-20 sm:px-4 mx-auto py-10"
+      >
+        {/* middle card */}
+        <div className="text-center lg:text-left  max-w-xl">
+          <span className="text-teal-500 py-1 px-2 rounded-full bg-gradient-to-r from-blue-500/15 via-purple-500/15 to-teal-500/15">
+            Welcome My Portfolio
+          </span>
+          {/* <h1 className="text-sm font-bold mb-2 text-teal-400">&lt;C/&gt;</h1> */}
+          <p className="text-2xl poppins-font text-gray-800  sm:text-3xl md:text-4xl lg:text-6xl font-semibold leading-snug">
+            <span class="text-gray-800 text-lg md:text-3xl font-bold">Hi</span>
+            <span class="wave inline-block text-xl ml-2 md:text-4xl animate-wave">
+              👋
+            </span>
+            <br /> I’m <span className="text-teal-600"> Md. Shakib </span>
+            <br />
+            <span className="mt-2 h-10 block inter-font text-2xl text-gray-700 font-semibold">
+              {text}|
+            </span>
+          </p>
 
+          {/* <h1 className="text-sm font-bold mt-4 text-teal-400">&lt;C/&gt;</h1> */}
 
-                <div className="flex flex-col lg:flex-row-reverse justify-evenly items-center mt-10 lg:mt-20 gap-10 lg:gap-20">
+          <p className="mt-4 inter-font  text-sm sm:text-base font-normal text-gray-600 leading-relaxed">
+            Frontend Web Developer skilled in React, JavaScript, and full-stack
+            technologies including Node.js, Express.js, and MongoDB. Experienced
+            in building scalable, responsive, and user-friendly web
+            applications.
+          </p>
 
-                    {/* Image with floating cards */}
-                    <div className="relative flex justify-center items-center w-52 h-52 sm:w-72 sm:h-72 lg:w-96 lg:h-96">
-                        {/* Shadow background (glow) */}
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 blur-2xl opacity-40"></div>
-
-                        <PixelTransition
-                            firstContent={
-                                <img
-                                    src="https://i.ibb.co.com/GQhkTh80/sk8-24-at-09-22-28-1cea5aae.jpg"
-                                    alt="Profile"
-                                    className="rounded-full w-full h-full object-cover"
-                                />
-                            }
-                            secondContent={
-                                <img
-                                    src="https://i.ibb.co.com/GQhkTh80/sk8-24-at-09-22-28-1cea5aae.jpg"
-                                    alt="Profile"
-                                    className="rounded-full w-full h-full object-cover"
-                                />
-                            }
-                            gridSize={12}
-                            pixelColor="#ffffff"
-                            animationStepDuration={0.4}
-                            className="custom-pixel-card"
-                        />
-
-                        {/* Floating skill cards */}
-                        <motion.div
-                            initial={{ y: 0 }}
-                            animate={{ y: [0, -10, 0] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                            className="absolute -left-16 sm:-left-24 lg:-left-32 top-1/3 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
-                        >
-                            Frontend Developer
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ x: 0 }}
-                            animate={{ x: [0, 10, 0] }}
-                            transition={{ duration: 2.5, repeat: Infinity }}
-                            className="absolute -right-20 md:-right-16 lg:-right-24 top-1/5 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
-                        >
-                            MERN Stack Developer
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ x: 0 }}
-                            animate={{ x: [0, 10, 0] }}
-                            transition={{ duration: 2.5, repeat: Infinity }}
-                            className="absolute -right-5 sm:-right-8 lg:-right-10 bottom-1/5 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
-                        >
-                            Problem Solver
-                        </motion.div>
-                    </div>
-
-                    {/* middle card */}
-                    <div className="text-center lg:text-left max-w-xl">
-                        <span className='text-teal-500 py-1 px-2 rounded-full bg-gradient-to-r from-blue-500/15 via-purple-500/15 to-teal-500/15'>Welcome My Portfolio</span>
-                        {/* <h1 className="text-sm font-bold mb-2 text-teal-400">&lt;C/&gt;</h1> */}
-                        <p className="text-2xl poppins-font text-gray-800  sm:text-3xl md:text-4xl lg:text-6xl font-semibold leading-snug">
-
-                            <span class="text-gray-800 text-lg md:text-3xl font-bold">Hi</span>
-                            <span class="wave inline-block text-xl ml-2 md:text-4xl animate-wave">👋</span>
-                            <br /> I’m <span className="text-teal-600"> Md. Shakib </span><br />
-                            <span className="mt-2 h-10 block inter-font text-2xl text-gray-700 font-semibold">{text}|</span>
-                        </p>
-
-                        {/* <h1 className="text-sm font-bold mt-4 text-teal-400">&lt;C/&gt;</h1> */}
-
-                        <p className="mt-4 inter-font  text-sm sm:text-base font-normal text-gray-600 leading-relaxed">
-                            Frontend Web Developer skilled in React, JavaScript, and full-stack technologies including Node.js, Express.js, and
-                            MongoDB. Experienced in building scalable, responsive, and user-friendly web applications.
-                        </p>
-
-                        <div className="mt-6 md:mt-8 flex justify-center lg:justify-start">
-                            <a
-                                href="/Shakib.Resume.docx (5).pdf"
-                                download
-                                className="group flex items-center gap-2 bg-gradient-to-r from-teal-400 to-teal-600 px-4 py-2 rounded shadow text-teal-100 text-sm sm:text-base transition-all duration-300"
-                            >
-                                Download CV
-                                <FaDownload className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-1" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* about section */}
-            <section id="about" className="scroll-mt-20">
-                <Adbout />
-            </section>
-
-            {/* skills section */}
-            <section id="skills" className="scroll-mt-20">
-                <Skills />
-            </section>
-
-            {/* projects section */}
-            <section id="projects" className="scroll-mt-20">
-                <Project />
-            </section>
-
-            <section id="education" className="scroll-mt-20">
-                <Education />
-            </section>
-
-            {/* contact section */}
-            <section id="contact" className="scroll-mt-20">
-                <Contact />
-            </section>
+          <div className="mt-6 md:mt-8 flex justify-center lg:justify-start">
+            <a
+              href="/Shakib.Resume.docx (5).pdf"
+              download
+              className="group flex items-center gap-2 bg-gradient-to-r from-teal-400 to-teal-600 px-4 py-2 rounded shadow text-teal-100 text-sm sm:text-base transition-all duration-300"
+            >
+              Download CV
+              <FaDownload className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-1" />
+            </a>
+          </div>
         </div>
-    );
+
+        {/* Image with floating cards */}
+        <div className="relative flex  justify-center   items-center w-52 h-52 sm:w-72 sm:h-72 lg:w-96 lg:h-96">
+          {/* Shadow background (glow) */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 blur-2xl opacity-40"></div>
+
+          <PixelTransition
+            firstContent={
+              <img
+                src="https://i.ibb.co.com/GQhkTh80/sk8-24-at-09-22-28-1cea5aae.jpg"
+                alt="Profile"
+                className="rounded-full w-full h-full cursor-pointer z-80 object-cover"
+              />
+            }
+            secondContent={
+              <img
+                src="https://i.ibb.co.com/GQhkTh80/sk8-24-at-09-22-28-1cea5aae.jpg"
+                alt="Profile"
+                className="rounded-full w-full  h-full cursor-pointer z-80 object-cover"
+              />
+            }
+            gridSize={12}
+            pixelColor="#ffffff"
+            animationStepDuration={0.4}
+            className="custom-pixel-card"
+          />
+
+          {/* Floating skill cards */}
+          <motion.div
+            initial={{ y: 0 }}
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="absolute -left-16 z-40 sm:-left-24 lg:-left-32 top-1/3 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
+          >
+            Frontend Developer
+          </motion.div>
+
+          <motion.div
+            initial={{ x: 0 }}
+            animate={{ x: [0, 10, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity }}
+            className="absolute -right-20 md:-right-16 z-40 lg:-right-24 top-1/5 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
+          >
+            MERN Stack Developer
+          </motion.div>
+
+          <motion.div
+            initial={{ x: 0 }}
+            animate={{ x: [0, 10, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity }}
+            className="absolute -right-5 sm:-right-8 z-40 lg:-right-10 bottom-1/5 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
+          >
+            Problem Solver
+          </motion.div>
+          <div className="absolute -inset-8 border-2 border-teal-200/30 z-0 dark:border-teal-900/30 rounded-full animate-spin-slow"></div>
+          <div className="absolute -ins-12 border border-blue-200/20 z-0 dark:border-blue-900/20 rounded-full animate-spin-slow-reverse"></div>
+        </div>
+      </section>
+
+      {/* about section */}
+      <section id="about" className="scroll-mt-20">
+        <Adbout />
+      </section>
+
+      {/* skills section */}
+      <section id="skills" className="scroll-mt-20">
+        <Skills />
+      </section>
+
+      {/* projects section */}
+      <section id="projects" className="scroll-mt-20">
+        <Project />
+      </section>
+
+      <section id="education" className="scroll-mt-20">
+        <Education />
+      </section>
+
+      {/* contact section */}
+      <section id="contact" className="scroll-mt-20">
+        <Contact />
+      </section>
+    </div>
+  );
 };
 
 export default Home;
