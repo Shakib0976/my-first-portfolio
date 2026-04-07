@@ -15,6 +15,12 @@ import {
 import { NavLink, Outlet } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import Loader from "../Components/Loader.jsx"; // 👈 import loader
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/Components/ui/tooltip.jsx";
+import { Dock } from "@/Components/unlumen-ui/dock.jsx";
 
 const RootLayouts = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +60,7 @@ const RootLayouts = () => {
     { to: "/", label: "Home", icon: <FaHome /> },
   ];
 
-  const navItemsV = [
+  const items = [
     {
       to: "/#home",
       label: "Home",
@@ -168,47 +174,56 @@ const RootLayouts = () => {
     },
   ];
 
-  const getScale = (itemIndex) => {
-    // Hover state
-    if (hoveredIndex !== null) {
-      const dist = Math.abs(hoveredIndex - itemIndex);
-      if (dist === 0) return "scale-150"; // hovered icon — full scale
-      if (dist === 1) return "scale-115"; // পাশের icon — mid scale
-      return "scale-100"; // বাকিগুলো normal
-    }
-    // Active (clicked) state
-    if (activeIndex === itemIndex) return "scale-130";
-    return "scale-100";
-  };
+  // const getScale = (itemIndex) => {
+  //   if (hoveredIndex !== null) {
+  //     const dist = Math.abs(hoveredIndex - itemIndex);
+  //     if (dist === 0) return 1.5;
+  //     if (dist === 1) return 1.2;
+  //     if (dist === 2) return 1.08;
+  //     return 1.0;
+  //   }
+  //   if (activeIndex === itemIndex) return 1.25;
+  //   return 1.0;
+  // };
   return (
     <div className="bg-gradient-to-r from-blue-400/5 via-purple-400/5 to-teal-400/5 ">
       {/* sidebar */}
       <aside>
-        <div className="fixed hover:scale-110 duration-300 gap-2 py-6 px-2 top-1/2 left-5 hidden mt-10 -translate-y-1/2 lg:flex flex-col items-center bg-gradient-to-b from-blue-500/30 via-purple-500/30 to-teal-500/30 text-white border border-gray-200 rounded-full shadow-lg z-50">
+        <Dock className="fixed top-1/2 left-10"
+        items={items} />
+        {/* <div
+          className="fixed gap-5 px-3 py-4 hover:scale-110 duration-500 top-1/2 left-5 hidden mt-10 -translate-y-1/2 lg:flex flex-col items-center bg-gradient-to-b from-blue-500/30 via-purple-500/30 to-teal-500/30 text-white border border-gray-200 rounded-full shadow-lg z-50"
+          onMouseLeave={() => {
+            setHoveredIndex(null);
+          }}
+        >
           {navItemsV.map(({ to, icon, label }, index) => (
-            <HashLink
-              smooth
-              key={to}
-              to={to}
-              className={`
-            group relative rounded-full p-2 my-2
-            transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]
-            hover:bg-gray-950/10
-            ${getScale(index)}
-          `}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() =>
-                setActiveIndex((prev) => (prev === index ? null : index))
-              }
-            >
-              {icon}
-              <span className="absolute left-full top-1/2 ml-1 -translate-y-1/2 whitespace-nowrap rounded bg-slate-950/40 text-teal-300 font-bold p-1 text-sm opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 select-none">
-                {label}
-              </span>
-            </HashLink>
+            <Tooltip key={to}>
+              <TooltipTrigger>
+                <HashLink
+                  smooth
+                  to={to}
+                  style={{
+                    transform: `scale(${getScale(index)})`,
+                    transition:
+                      "transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                  }}
+                  className="group relative rounded-full p-2 my-2 block"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  onClick={() =>
+                    setActiveIndex((prev) => (prev === index ? null : index))
+                  }
+                >
+                  {icon}
+                </HashLink>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{label}</p>
+              </TooltipContent>
+            </Tooltip>
           ))}
-        </div>
+        </div> */}
       </aside>
 
       {/* main */}

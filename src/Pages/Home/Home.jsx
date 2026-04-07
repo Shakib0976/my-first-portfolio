@@ -54,8 +54,11 @@ const Home = () => {
             <span class="wave inline-block text-xl ml-2 md:text-4xl animate-wave">
               👋
             </span>
-            <br /> I’m <span className="text-teal-600"> Md. Shakib </span>
-            <br />
+           
+            <h1 className="lg:text-7xl md:text-4xl text-3xl font-semibold">
+              I’m <span className="text-teal-600"> Md. Shakib </span>
+            </h1>
+         
             <span className="mt-2 h-10 block inter-font text-2xl text-gray-700 font-semibold">
               {text}|
             </span>
@@ -83,7 +86,7 @@ const Home = () => {
         </div>
 
         {/* Image with floating cards */}
-        <div className="relative flex  justify-center   items-center w-52 h-52 sm:w-72 sm:h-72 lg:w-96 lg:h-96">
+        <div className="relative flex  justify-center   items-center w-52 h-52 sm:w-72 sm:h-72 lg:w-116 lg:h-116">
           {/* Shadow background (glow) */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 blur-2xl opacity-40"></div>
 
