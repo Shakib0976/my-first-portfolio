@@ -1,7 +1,7 @@
 import { Code2, Github, GithubIcon, Sparkles } from "lucide-react";
 import {
     SiHtml5,
-    SiCss3,
+ 
     SiJavascript,
     SiReact,
     SiNextdotjs,
@@ -18,7 +18,7 @@ import {
 export default function SkillsSection() {
     const skills = [
         { name: "HTML5", icon: SiHtml5, color: "text-orange-500" },
-        { name: "CSS3", icon: SiCss3, color: "text-blue-500" },
+        // { name: "CSS3", icon: SiCss3, color: "text-blue-500" },
         { name: "JavaScript", icon: SiJavascript, color: "text-yellow-500" },
         { name: "React", icon: SiReact, color: "text-cyan-400" },
         { name: "Next.js", icon: SiNextdotjs, color: "text-gray-800" },

@@ -1,223 +1,202 @@
 "use client";
 
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import { useState, useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  AnimatePresence,
-} from "motion/react";
+  Home,
+  Mail,
+  Calendar,
+  Camera,
+  Music,
+  Settings,
+  FileText,
+  MessageCircle,
+  Globe,
+  Folder,
+  HelpCircle,
+  Image,
+  GraduationCap,
+  FolderGit2,
+  Code,
+  User,
+  HomeIcon,
+} from "lucide-react";
+const dockItems = [
+  {
+    id: "home",
+    to: "/#home",
+    name: "Home",
+    icon: <HomeIcon size={20} color="white" />,
+    color: "bg-gray-700",
+  },
+  {
+    id: "about",
+    to: "/#about",
+    name: "About",
+    icon: <User size={20} color="white" />,
+    color: "bg-blue-500",
+  },
+  {
+    id: "skills",
+    to: "/#skills",
+    name: "Skills",
+    icon: <Code size={20} color="white" />,
+    color: "bg-green-500",
+  },
+  {
+    id: "projects",
+    to: "/#projects",
+    name: "Projects",
+    icon: <FolderGit2 size={20} color="white" />,
+    color: "bg-purple-500",
+  },
+  {
+    id: "education",
+    to: "/#education",
+    name: "Education",
+    icon: <GraduationCap size={20} color="white" />,
+    color: "bg-red-500",
+  },
+  {
+    id: "gallery",
+    to: "/#gallery",
+    name: "Gallery",
+    icon: <Image size={20} color="white" />,
+    color: "bg-pink-500",
+  },
+  {
+    id: "faq",
+    to: "/#faq",
+    name: "Q&A",
+    icon: <HelpCircle size={20} color="white" />,
+    color: "bg-orange-500",
+  },
+  {
+    id: "contact",
+    to: "/#contact",
+    name: "Contact",
+    icon: <Mail size={20} color="white" />,
+    color: "bg-yellow-500",
+  },
+];
 
-import { cn } from "@/lib/utils";
+function DockIcon({ item, mouseY }) {
+  const ref = useRef(null);
 
-const DEFAULT_SPRING = {
-  stiffness: 400,
-  damping: 25,
-  mass: 0.4,
-};
-
-function DockSeparator() {
-  return (
-    <div className="mx-1 flex items-center self-stretch">
-      <div className="h-6 w-px bg-foreground/10" />
-    </div>
-  );
-}
-
-function DockIcon({
-  item,
-  mouseX,
-  magnification,
-  distance,
-  iconSize,
-  borderRadius,
-  alwaysShowLabels,
-  springOptions,
-  onHover,
-  iconRef,
-}) {
-  const wrapperRef = useRef(null);
-
-  const distanceFromMouse = useTransform(mouseX, (val) => {
-    const el = wrapperRef.current;
-    if (!el) return distance * 100;
-    const rect = el.getBoundingClientRect();
-    return Math.abs(val - (rect.left + rect.width / 2));
+  const distance = useTransform(mouseY, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { y: 0, height: 0 };
+    return val - bounds.y - bounds.height / 2;
   });
 
-  const gaussian = (d) =>
-    (magnification - 1) * Math.exp(-(d * d) / (2 * distance * distance)) + 1;
+  const sizeSync = useTransform(distance, [-150, 0, 150], [32, 52, 32]);
+  const size = useSpring(sizeSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
-  const widthRaw = useTransform(
-    distanceFromMouse,
-    (d) => iconSize * gaussian(d),
-  );
-  const heightRaw = useTransform(
-    distanceFromMouse,
-    (d) => iconSize * gaussian(d),
-  );
-
-  const width = useSpring(widthRaw, springOptions);
-  const height = useSpring(heightRaw, springOptions);
-
-  const Tag = item.href ? "a" : "button";
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   return (
     <motion.div
-      ref={wrapperRef}
-      className="relative flex items-end justify-center"
-      style={{ width, height: iconSize }}
+      ref={ref}
+      style={{ width: size, height: size }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onMouseDown={() => setIsClicked(true)}
+      onMouseUp={() => setIsClicked(false)}
+      className="aspect-square cursor-pointer flex items-center justify-center relative group"
+      whileTap={{ scale: 0.95 }}
     >
       <motion.div
-        ref={iconRef}
-        style={{ width, height, bottom: 0 }}
-        className="absolute"
+        className={`w-full h-full rounded-2xl shadow-lg flex p-5 items-center justify-center text-white relative overflow-hidden ${item.color}`}
+        animate={{
+          x: isClicked ? -2 : isHovered ? 15 : 0,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 17,
+        }}
       >
-        <Tag
-          href={item.href}
-          onClick={item.onClick}
-          onMouseEnter={() => onHover(iconRef)}
-          onMouseLeave={() => onHover(null)}
-          aria-label={item.label}
-          style={{ borderRadius }}
-          className={cn(
-            "flex h-full w-full items-center justify-center",
-            "text-foreground/70 transition-colors duration-150",
-            "hover:bg-foreground/[0.06] hover:text-foreground",
-            "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground/20",
-            "[&_svg]:size-[55%]",
-          )}
+        <motion.div
+          className="text-xl"
+          animate={{
+            scale: isHovered ? 1.1 : 1,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 17,
+          }}
         >
           {item.icon}
-        </Tag>
+        </motion.div>
+
+        {/* Shine effect */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"
+          animate={{
+            opacity: isHovered ? 0.3 : 0.1,
+          }}
+          transition={{ duration: 0.2 }}
+        />
       </motion.div>
 
-      {alwaysShowLabels && (
-        <span className="mt-0.5 text-[10px] font-medium tracking-tight text-foreground/40 whitespace-nowrap pointer-events-none select-none leading-none">
-          {item.label}
-        </span>
-      )}
+      {/* Tooltip — right side */}
+      <motion.div
+        initial={{ opacity: 0, x: -10, scale: 0.8 }}
+        animate={{
+          opacity: isHovered ? 1 : 0,
+          x: isHovered ? 12 : -10,
+          scale: isHovered ? 1 : 0.8,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 500,
+          damping: 30,
+        }}
+        className="absolute left-full top-1/2 -translate-y-1/2 ml-2 bg-gray-800/90 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap pointer-events-none backdrop-blur-sm"
+      >
+        {item.name}
+      </motion.div>
+
+      {/* Active indicator dot — left side */}
+      <motion.div
+        className="absolute -left-1 top-1/2 -translate-y-1/2 w-1 h-1 bg-white/80 rounded-full"
+        animate={{
+          scale: isClicked ? 1.5 : 1,
+          opacity: isClicked ? 1 : 0.7,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 500,
+          damping: 30,
+        }}
+      />
     </motion.div>
   );
 }
 
-export function Dock({
-  items,
-  magnification = 1.8,
-  distance = 120,
-  iconSize = 40,
-  gap = 4,
-  borderRadius = 16,
-  alwaysShowLabels = false,
-  springOptions = DEFAULT_SPRING,
-  className,
-}) {
-  const mouseX = useMotionValue(Infinity);
-  const dockRef = useRef(null);
-
-  const iconRefs = useRef(items.map(() => React.createRef()));
-
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [tooltipX, setTooltipX] = useState(0);
-  const [tooltipBottomOffset, setTooltipBottomOffset] = useState(0);
-
-  useEffect(() => {
-    if (hoveredIndex === null) return;
-
-    let raf;
-    const update = () => {
-      const iconEl = iconRefs.current[hoveredIndex]?.current;
-      const dockEl = dockRef.current;
-
-      if (iconEl && dockEl) {
-        const iconRect = iconEl.getBoundingClientRect();
-        const dockRect = dockEl.getBoundingClientRect();
-
-        setTooltipX(iconRect.left - dockRect.left + iconRect.width / 2);
-        setTooltipBottomOffset(dockRect.bottom - iconRect.top);
-      }
-
-      raf = requestAnimationFrame(update);
-    };
-
-    raf = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(raf);
-  }, [hoveredIndex]);
-
-  const handleHover = useCallback((ref) => {
-    if (ref === null) {
-      setHoveredIndex(null);
-      return;
-    }
-
-    const idx = iconRefs.current.findIndex((r) => r === ref);
-    setHoveredIndex(idx >= 0 ? idx : null);
-  }, []);
+export function Dock() {
+  const mouseY = useMotionValue(Infinity);
 
   return (
-    <motion.div
-      ref={dockRef}
-      className={cn(
-        "relative flex items-end overflow-visible border border-foreground/[0.08] bg-background/80 px-2 py-2 shadow-none hover:shadow-[0_0_0_1px_rgba(0,0,0,0.02),0_2px_8px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06)] transition-shadow duration-200 backdrop-blur-xl",
-        className,
-      )}
-      style={{ gap, borderRadius }}
-      onMouseMove={(e) => mouseX.set(e.clientX)}
-      onMouseLeave={() => mouseX.set(Infinity)}
-    >
-      {items.map((item, i) => (
-        <React.Fragment key={i}>
-          <DockIcon
-            item={item}
-            mouseX={mouseX}
-            magnification={magnification}
-            distance={distance}
-            iconSize={iconSize}
-            borderRadius={borderRadius}
-            alwaysShowLabels={alwaysShowLabels}
-            springOptions={springOptions}
-            onHover={handleHover}
-            iconRef={iconRefs.current[i]}
-          />
-          {item.separator && <DockSeparator />}
-        </React.Fragment>
-      ))}
-
-      {!alwaysShowLabels && (
-        <AnimatePresence>
-          {hoveredIndex !== null && (
-            <motion.div
-              key="dock-tooltip"
-              layoutId="dock-tooltip"
-              className="pointer-events-none absolute flex flex-col items-center z-50"
-              style={{
-                left: tooltipX,
-                bottom: tooltipBottomOffset + 8,
-                x: "-50%",
-              }}
-              initial={{ opacity: 0, y: 6, scale: 0.94 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 6, scale: 0.94 }}
-              transition={{ duration: 0.13, ease: "easeOut" }}
-            >
-              <span className="rounded-md border border-foreground/10 bg-background px-2 py-1 text-sm font-medium text-foreground shadow-sm whitespace-nowrap">
-                {items[hoveredIndex].label}
-              </span>
-
-              <svg
-                width="8"
-                height="4"
-                viewBox="0 0 8 4"
-                className="-mt-px text-background"
-                aria-hidden
-              >
-                <path d="M0 0L4 4L8 0" fill="currentColor" />
-              </svg>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      )}
-    </motion.div>
+    <div className="fixed left-0 top-1/2 -translate-y-1/2 p-8">
+      <motion.div
+        onMouseMove={(e) => mouseY.set(e.pageY)}
+        onMouseLeave={() => mouseY.set(Infinity)}
+        className="flex flex-col w-fit items-center gap-8 rounded-3xl bg-linear-to-b from-blue-500/20 via-purple-500/20 to-teal-500/20 text-white px-3.5 py-4 border-2 border-white/20 shadow-xl"
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+          delay: 0.1,
+        }}
+      >
+        {dockItems.map((item) => (
+          <DockIcon key={item.id} item={item} mouseY={mouseY} />
+        ))}
+      </motion.div>
+    </div>
   );
 }

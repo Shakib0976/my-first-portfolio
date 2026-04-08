@@ -189,8 +189,7 @@ const RootLayouts = () => {
     <div className="bg-gradient-to-r from-blue-400/5 via-purple-400/5 to-teal-400/5 ">
       {/* sidebar */}
       <aside>
-        <Dock className="fixed top-1/2 left-10"
-        items={items} />
+        <Dock />
         {/* <div
           className="fixed gap-5 px-3 py-4 hover:scale-110 duration-500 top-1/2 left-5 hidden mt-10 -translate-y-1/2 lg:flex flex-col items-center bg-gradient-to-b from-blue-500/30 via-purple-500/30 to-teal-500/30 text-white border border-gray-200 rounded-full shadow-lg z-50"
           onMouseLeave={() => {
