@@ -36,49 +36,49 @@ const dockItems = [
     to: "/#about",
     name: "About",
     icon: <User size={20} color="white" />,
-    color: "bg-blue-500",
+   color: "bg-gray-700",
   },
   {
     id: "skills",
     to: "/#skills",
     name: "Skills",
     icon: <Code size={20} color="white" />,
-    color: "bg-green-500",
+    color: "bg-gray-700",
   },
   {
     id: "projects",
     to: "/#projects",
     name: "Projects",
     icon: <FolderGit2 size={20} color="white" />,
-    color: "bg-purple-500",
+    color: "bg-gray-700",
   },
   {
     id: "education",
     to: "/#education",
     name: "Education",
     icon: <GraduationCap size={20} color="white" />,
-    color: "bg-red-500",
+    color: "bg-gray-700",
   },
   {
     id: "gallery",
     to: "/#gallery",
     name: "Gallery",
     icon: <Image size={20} color="white" />,
-    color: "bg-pink-500",
+    color: "bg-gray-700",
   },
   {
     id: "faq",
     to: "/#faq",
     name: "Q&A",
     icon: <HelpCircle size={20} color="white" />,
-    color: "bg-orange-500",
+    color: "bg-gray-700",
   },
   {
     id: "contact",
     to: "/#contact",
     name: "Contact",
     icon: <Mail size={20} color="white" />,
-    color: "bg-yellow-500",
+    color: "bg-gray-700",
   },
 ];
 
@@ -105,7 +105,7 @@ function DockIcon({ item, mouseY }) {
         onMouseLeave={() => setIsHovered(false)}
         onMouseDown={() => setIsClicked(true)}
         onMouseUp={() => setIsClicked(false)}
-        className="aspect-square cursor-pointer z-80 flex items-center justify-center relative group"
+        className="aspect-square  cursor-pointer z-80 flex items-center justify-center relative group"
         whileTap={{ scale: 0.95 }}
       >
         <motion.div
@@ -176,6 +176,10 @@ function DockIcon({ item, mouseY }) {
     </HashLink>
   );
 }
+
+
+// 
+
 export function Dock() {
   const mouseY = useMotionValue(Infinity);
 
