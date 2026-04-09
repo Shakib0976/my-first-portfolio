@@ -21,6 +21,7 @@ import {
   TooltipTrigger,
 } from "@/Components/ui/tooltip.jsx";
 import { Dock } from "@/Components/unlumen-ui/dock.jsx";
+import { Navbar } from "@/Pages/Navbar/navbar.jsx";
 
 const RootLayouts = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -227,15 +228,16 @@ const RootLayouts = () => {
 
       {/* main */}
       <main>
-        <header className="bg-gradient-to-r from-white/90 via-purple-100/90 to-teal-100/90 sticky top-0  z-50 text-gray-800 px-6 md:px-20 py-6  shadow-lg">
-          <div className="flex  justify-between items-center">
-            {/* Logo */}
+        <Navbar></Navbar>
+        {/* <header className="bg-gradient-to-r from-white/90 via-purple-100/90 to-teal-100/90 sticky top-0  z-50 text-gray-800 px-6 md:px-20 py-6  shadow-lg"> */}
+          {/* <div className="flex  justify-between items-center">
+           
             <h1 className="text-lg md:text-xl font-bold text-teal-600">
               &lt;C/&gt; Md . Shakib
-            </h1>
+            </h1> */}
 
             {/* Desktop Menu */}
-            <nav className="hidden md:flex items-center gap-6">
+            {/* <nav className="hidden md:flex items-center gap-6">
               {navItems.map(({ to, target, label, icon }) => (
                 <NavLink
                   key={to}
@@ -248,19 +250,19 @@ const RootLayouts = () => {
                   {icon} {label}
                 </NavLink>
               ))}
-            </nav>
+            </nav> */}
 
-            {/* Mobile Menu Button */}
-            <button
+          
+            {/* <button
               className="md:hidden text-gray-600 text-2xl"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <FaTimes /> : <FaBars />}
             </button>
-          </div>
+          </div> */}
 
-          {/* Mobile Dropdown Menu */}
-          {isOpen && (
+        
+          {/* {isOpen && (
             <div className="md:hidden mt-4 flex flex-col gap-4 border-t border-gray-700 pt-4">
               {navItems.map(({ to, label, icon }) => (
                 <NavLink
@@ -275,8 +277,8 @@ const RootLayouts = () => {
                 </NavLink>
               ))}
             </div>
-          )}
-        </header>
+          )} */}
+        {/* </header> */}
 
         {/* Only render the route content */}
         <Outlet />
