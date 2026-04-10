@@ -3,132 +3,130 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HashLink } from "react-router-hash-link";
-import {
-  HomeIcon,
-  User,
-  Code,
-  FolderGit2,
-  GraduationCap,
-  Image,
-  HelpCircle,
-  Mail,
-} from "lucide-react";
+import { Home } from "lucide-react";
+import { FaLinkedin, FaGithub, FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { IoLogoSkype } from "react-icons/io";
 
 const dockItems = [
-  { id: "home", to: "/#home", name: "Home", icon: HomeIcon },
-  { id: "about", to: "/#about", name: "About", icon: User },
-  { id: "skills", to: "/#skills", name: "Skills", icon: Code },
-  { id: "projects", to: "/#projects", name: "Projects", icon: FolderGit2 },
   {
-    id: "education",
-    to: "/#education",
-    name: "Education",
-    icon: GraduationCap,
+    id: "linkedin",
+    to: "https://www.linkedin.com/feed/",
+    name: "LinkedIn",
+    icon: FaLinkedin,
+    external: true,
   },
-  { id: "gallery", to: "/#gallery", name: "Gallery", icon: Image },
-  { id: "faq", to: "/#faq", name: "Q&A", icon: HelpCircle },
-  { id: "contact", to: "/#contact", name: "Contact", icon: Mail },
+  {
+    id: "github",
+    to: "https://github.com/Shakib0976",
+    name: "GitHub",
+    icon: FaGithub,
+    external: true,
+  },
+  {
+    id: "facebook",
+    to: "https://www.facebook.com/md.shakib.khan.809698",
+    name: "Facebook",
+    icon: FaFacebook,
+    external: true,
+  },
+  {
+    id: "twitter",
+    to: "https://x.com/ShakibMd5698",
+    name: "Twitter",
+    icon: FaXTwitter,
+    external: true,
+  },
 ];
 
 function NavIcon({ item, isActive }) {
   const [hovered, setHovered] = useState(false);
   const Icon = item.icon;
 
+  const iconContent = (
+    <motion.div
+      className="relative flex items-center justify-center gap-5  rounded-full cursor-pointer"
+      style={{ width: 36, height: 36 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      animate={{
+        backgroundColor: isActive
+          ? "rgba(255,255,255,0.12)"
+          : hovered
+            ? "rgba(255,255,255,0.07)"
+            : "rgba(255,255,255,0)",
+        scale: isActive ? 1.08 : 1,
+      }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+    >
+      {/* Icon */}
+      <Icon size={25} strokeWidth={isActive ? 2.2 : 1.8} />
+
+      {/* Active dot */}
+      <AnimatePresence>
+        {isActive && (
+          <motion.span
+            key="dot"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            style={{
+              position: "absolute",
+              bottom: 3,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: 3,
+              height: 3,
+              borderRadius: "50%",
+              backgroundColor: "#fff",
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Tooltip */}
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            initial={{ opacity: 0, y: -4, scale: 0.85 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -4, scale: 0.85 }}
+            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            style={{
+              position: "absolute",
+              top: "calc(100% + 8px)",
+              left: "50%",
+              transform: "translateX(-50%)",
+              background: "rgba(15,15,15,0.85)",
+              color: "#fff",
+              fontSize: 11,
+              padding: "3px 8px",
+              borderRadius: 6,
+              whiteSpace: "nowrap",
+              pointerEvents: "none",
+              border: "1px solid rgba(255,255,255,0.08)",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+              zIndex: 99,
+            }}
+          >
+            {item.name}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+
+  if (item.external) {
+    return (
+      <a href={item.to} target="_blank" rel="noopener noreferrer">
+        {iconContent}
+      </a>
+    );
+  }
+
   return (
     <HashLink smooth to={item.to}>
-      <motion.div
-        className="relative flex items-center justify-center rounded-full cursor-pointer"
-        style={{ width: 36, height: 36 }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        animate={{
-          backgroundColor: isActive
-            ? "rgba(255,255,255,0.15)"
-            : hovered
-              ? "rgba(255,255,255,0.08)"
-              : "rgba(255,255,255,0)",
-          scale: isActive ? 1.08 : 1,
-        }}
-        transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      >
-        {/* Active ring */}
-        <AnimatePresence>
-          {isActive && (
-            <motion.span
-              key="ring"
-              initial={{ opacity: 0, scale: 0.6 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.6 }}
-              transition={{ type: "spring", stiffness: 500, damping: 30 }}
-              style={{
-                position: "absolute",
-                inset: 0,
-                borderRadius: "50%",
-                border: "1.5px solid rgba(255,255,255,0.5)",
-                pointerEvents: "none",
-              }}
-            />
-          )}
-        </AnimatePresence>
-
-        {/* Icon */}
-        <Icon
-          size={17}
-          color={isActive ? "#ffffff" : "rgba(255,255,255,0.55)"}
-          strokeWidth={isActive ? 2.2 : 1.8}
-        />
-
-        {/* Active dot */}
-        <AnimatePresence>
-          {isActive && (
-            <motion.span
-              key="dot"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0 }}
-              style={{
-                position: "absolute",
-                bottom: 3,
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: 3,
-                height: 3,
-                borderRadius: "50%",
-                backgroundColor: "#fff",
-              }}
-            />
-          )}
-        </AnimatePresence>
-
-        {/* Tooltip */}
-        <AnimatePresence>
-          {hovered && (
-            <motion.div
-              initial={{ opacity: 0, y: -4, scale: 0.85 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -4, scale: 0.85 }}
-              transition={{ type: "spring", stiffness: 500, damping: 30 }}
-              style={{
-                position: "absolute",
-                top: "calc(100% + 8px)",
-                left: "50%",
-                transform: "translateX(-50%)",
-                background: "rgba(20,20,20,0.92)",
-                color: "#fff",
-                fontSize: 11,
-                padding: "3px 8px",
-                borderRadius: 6,
-                whiteSpace: "nowrap",
-                pointerEvents: "none",
-                border: "1px solid rgba(255,255,255,0.1)",
-                zIndex: 99,
-              }}
-            >
-              {item.name}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+      {iconContent}
     </HashLink>
   );
 }
@@ -137,20 +135,18 @@ export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const sectionIds = dockItems.map((i) => i.id);
+    const sectionIds = ["home"];
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const docHeight = document.documentElement.scrollHeight;
 
-      // If scrolled to bottom, force last section active
       if (scrollY + windowHeight >= docHeight - 10) {
         setActiveSection(sectionIds[sectionIds.length - 1]);
         return;
       }
 
-      // Find which section is most visible in viewport
       let closest = sectionIds[0];
       let closestDistance = Infinity;
 
@@ -169,27 +165,34 @@ export function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // run once on mount
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="fixed max-w-11/12 mx-auto  top-4 left-4 right-4 z-50">
+    <div className="fixed max-w-11/12  mx-auto top-4 left-4 right-4 z-50">
       <div
-        className="flex items-center bg-gray-900/70 backdrop-blur-md border border-white/10 rounded-full px-4 py-4"
-        style={{ gap: 0 }}
+        className="flex items-center bg-linear-to-l from-blue-500/20 via-purple-500/20 to-teal-500/20 text-black rounded-full px-4 py-4"
+        style={{
+          gap: 0,
+
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          border: "1px solid rgba(255, 255, 255, 0.08)",
+          boxShadow:
+            "0 4px 30px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255,255,255,0.06)",
+        }}
       >
         {/* Left — Logo */}
-        <span className="text-white font-medium text-sm whitespace-nowrap mr-auto">
-          Acme Inc.
+        <span className="font-medium text-sm whitespace-nowrap mr-auto">
+          <IoLogoSkype size={35} />
         </span>
 
-        {/* Center — Icons (absolute center) */}
+        {/* Center — Icons */}
         <div
           style={{
             position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)",
+            right: "10%",
             display: "flex",
             alignItems: "center",
             gap: 4,
@@ -204,10 +207,17 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* Right — Contact button (always visible) */}
+        {/* Right — Contact button */}
         <div className="ml-auto">
           <HashLink smooth to="/#contact">
-            <button className="bg-white text-black text-xs font-medium px-4 py-1.5 rounded-full hover:bg-gray-100 active:scale-95 transition-all whitespace-nowrap">
+            <button
+              className="text-xs font-medium px-4 py-1.5 rounded-full active:scale-95 transition-all whitespace-nowrap"
+              style={{
+                background: "rgba(255,255,255,0.92)",
+                color: "#111",
+                border: "none",
+              }}
+            >
               Contact me
             </button>
           </HashLink>

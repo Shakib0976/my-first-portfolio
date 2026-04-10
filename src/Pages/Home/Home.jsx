@@ -55,7 +55,7 @@ const Home = () => {
               👋
             </span>
            
-            <h1 className="lg:text-7xl md:text-4xl text-3xl font-semibold">
+            <h1 className="lg:text-5xl md:text-4xl text-3xl font-semibold">
               I’m <span className="text-teal-600"> Md. Shakib </span>
             </h1>
          
