@@ -1,5 +1,5 @@
 /* Tailwind import (only if you're using Tailwind) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -12,60 +12,93 @@
   font-style: normal;
 }
 
-.inter-font{
+.inter-font {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
 /* Body with lighter pattern + slower animation */
 body {
+  background-color: #f8fafc !important;
+  background-image:
+    linear-gradient(rgba(100, 116, 139, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 116, 139, 0.1) 1px, transparent 1px) !important;
+  background-size: 40px 40px;
+  animation: bg-scrolling-reverse 8s linear infinite;
+}
+body {
+  background-color: #ffffff;
+}
 
-    background-color: #0f172a;
+/* Dark mode animated dot grid */
+html.dark body {
+  background-color: #0f172a !important;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px) !important;
+  background-size: 40px 40px;
+  animation: bg-scrolling-reverse 8s linear infinite;
+}
 
-    /* same pattern but with a lighter tint (50×50px) */
-    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
-
-    /* slower animation: 5 seconds instead of 0.92 */
-    -webkit-animation: bg-scrolling-reverse 5s infinite linear;
-    -moz-animation: bg-scrolling-reverse 5s infinite linear;
-    -o-animation: bg-scrolling-reverse 5s infinite linear;
-    animation: bg-scrolling-reverse 5s infinite linear;
+@keyframes bg-scrolling-reverse {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
 }
 
 /* Animation keyframes */
 @-webkit-keyframes bg-scrolling-reverse {
-    100% {
-        background-position: 50px 50px;
-    }
+  100% {
+    background-position: 50px 50px;
+  }
 }
 
 @-moz-keyframes bg-scrolling-reverse {
-    100% {
-        background-position: 50px 50px;
-    }
+  100% {
+    background-position: 50px 50px;
+  }
 }
 
 @-o-keyframes bg-scrolling-reverse {
-    100% {
-        background-position: 50px 50px;
-    }
+  100% {
+    background-position: 50px 50px;
+  }
 }
 
 @keyframes bg-scrolling-reverse {
-    100% {
-        background-position: 50px 50px;
-    }
+  100% {
+    background-position: 50px 50px;
+  }
 }
 
 @keyframes wave {
-  0% { transform: rotate(0deg); }
-  15% { transform: rotate(14deg); }
-  30% { transform: rotate(-8deg); }
-  40% { transform: rotate(14deg); }
-  50% { transform: rotate(-4deg); }
-  60% { transform: rotate(10deg); }
-  70% { transform: rotate(0deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(14deg);
+  }
+  30% {
+    transform: rotate(-8deg);
+  }
+  40% {
+    transform: rotate(14deg);
+  }
+  50% {
+    transform: rotate(-4deg);
+  }
+  60% {
+    transform: rotate(10deg);
+  }
+  70% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .animate-wave {
@@ -130,12 +163,11 @@ body {
     opacity: 1;
     transform: scale(1);
   }
-
 }
 
 @theme inline {
   --font-heading: var(--font-sans);
-  --font-sans: 'Geist Variable', sans-serif;
+  --font-sans: "Geist Variable", sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);

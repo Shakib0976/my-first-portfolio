@@ -41,7 +41,7 @@ const RootLayouts = () => {
 
 
   return (
-    <div className="bg-linear-to-r from-blue-400/5 via-purple-400/5 to-teal-400/5 ">
+    <div>
       {/* sidebar */}
       <aside>
         <Dock />

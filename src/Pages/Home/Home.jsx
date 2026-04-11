@@ -54,11 +54,11 @@ const Home = () => {
             <span class="wave inline-block text-xl ml-2 md:text-4xl animate-wave">
               👋
             </span>
-           
+
             <h1 className="lg:text-5xl md:text-4xl text-3xl font-semibold">
               I’m <span className="text-teal-600"> Md. Shakib </span>
             </h1>
-         
+
             <span className="mt-2 h-10 block inter-font text-2xl text-gray-700 font-semibold">
               {text}|
             </span>
@@ -67,13 +67,33 @@ const Home = () => {
           {/* <h1 className="text-sm font-bold mt-4 text-teal-400">&lt;C/&gt;</h1> */}
 
           <p className="mt-4 inter-font  text-sm sm:text-base font-normal text-gray-600 leading-relaxed">
-            Frontend Web Developer skilled in React, JavaScript, and full-stack
-            technologies including Node.js, Express.js, and MongoDB. Experienced
-            in building scalable, responsive, and user-friendly web
-            applications.
+            I build fast, responsive, and user-friendly web applications using
+            modern technologies like React, Node.js, and MongoDB. Passionate
+            about creating clean UI and scalable backend systems.
           </p>
+          <div className="mt-5 flex flex-wrap gap-3 justify-center lg:justify-start text-sm text-gray-600">
+            <span className="px-3 py-1 bg-gray-100 rounded-full">React</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">Node.js</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">MongoDB</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">Express</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">Tailwind</span>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-500">
+            <span>✔ 10+ Projects</span>
+            <span>✔ MERN Stack</span>
+            <span>✔ Responsive Design</span>
+          </div>
 
-          <div className="mt-6 md:mt-8 flex justify-center lg:justify-start">
+          <div className="mt-6 md:mt-8 flex flex-wrap gap-4 justify-center lg:justify-start">
+            {/* View Projects */}
+            <a
+              href="#projects"
+              className="px-5 py-2 rounded-lg bg-gray-900 text-white text-sm sm:text-base hover:bg-gray-800 transition"
+            >
+              View Projects
+            </a>
+
+            {/* Download CV */}
             <a
               href="/Shakib.Resume.docx (5).pdf"
               download
@@ -140,6 +160,10 @@ const Home = () => {
           </motion.div>
           <div className="absolute -inset-8 border-2 border-teal-200/30 z-0 dark:border-teal-900/30 rounded-full animate-spin-slow"></div>
           <div className="absolute -ins-12 border border-blue-200/20 z-0 dark:border-blue-900/20 rounded-full animate-spin-slow-reverse"></div>
+        </div>
+
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-400 text-sm animate-bounce">
+          Scroll Down ↓
         </div>
       </section>
 

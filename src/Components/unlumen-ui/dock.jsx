@@ -106,17 +106,17 @@ function DockIcon({ item, mouseY, isActive }) {
         onMouseLeave={() => setIsHovered(false)}
         onMouseDown={() => setIsClicked(true)}
         onMouseUp={() => setIsClicked(false)}
-        className="aspect-square cursor-pointer z-80 flex items-center justify-center relative group"
+        className="aspect-square cursor-pointer z-50 flex items-center justify-center relative group"
         whileTap={{ scale: 0.95 }}
         animate={{ scale: isActive ? 1.25 : 1 }}
         transition={{ type: "spring", stiffness: 350, damping: 20 }}
       >
         <motion.div
-          className={`w-full h-full rounded-2xl shadow-lg flex p-5 items-center justify-center relative overflow-hidden ${item.color}`}
+          className={`w-full h-full rounded-2xl ${isActive ? "bg-white dark:bg-gray-400" : ""} shadow-lg flex p-1 items-center justify-center relative overflow-hidden ${item.color}`}
           animate={{
             x: isClicked ? -2 : isHovered ? 15 : 0,
             // ✅ white bg when active
-            backgroundColor: isActive ? "#ffffff" : undefined,
+         
           }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
@@ -128,22 +128,6 @@ function DockIcon({ item, mouseY, isActive }) {
           >
             <Icon size={20} color={isActive ? "#000000" : "#ffffff"} />
           </motion.div>
-
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"
-            animate={{ opacity: isHovered ? 0.3 : isActive ? 0 : 0.1 }}
-            transition={{ duration: 0.2 }}
-          />
-
-          {isActive && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0 }}
-              transition={{ type: "spring", stiffness: 500, damping: 30 }}
-              className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-black rounded-full"
-            />
-          )}
         </motion.div>
 
         {/* Tooltip — unchanged */}
@@ -160,15 +144,7 @@ function DockIcon({ item, mouseY, isActive }) {
           {item.name}
         </motion.div>
 
-        {/* Left dot — unchanged */}
-        <motion.div
-          className="absolute -left-1 top-1/2 -translate-y-1/2 w-1 h-1 bg-white/80 rounded-full"
-          animate={{
-            scale: isClicked ? 1.5 : 1,
-            opacity: isClicked ? 1 : 0.7,
-          }}
-          transition={{ type: "spring", stiffness: 500, damping: 30 }}
-        />
+       
       </motion.div>
     </HashLink>
   );
@@ -217,9 +193,7 @@ export function Dock() {
   return (
     <div className="fixed left-0 top-1/2 -translate-y-1/2 p-8">
       <motion.div
-        onMouseMove={(e) => mouseY.set(e.pageY)}
-        onMouseLeave={() => mouseY.set(Infinity)}
-        className="flex flex-col w-fit items-center gap-8 rounded-3xl bg-linear-to-b from-blue-500/20 via-purple-500/20 to-teal-500/20 text-white px-3.5 py-4 border-2 border-white/20 shadow-xl"
+        className="flex flex-col w-fit items-center gap-8 rounded-3xl bg-linear-to-b from-blue-500/20 via-purple-500/20 to-teal-500/20 text-white px-2 py-4 border-2 border-white/20 shadow-xl"
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 }}

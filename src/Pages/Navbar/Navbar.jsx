@@ -7,6 +7,7 @@ import { Home } from "lucide-react";
 import { FaLinkedin, FaGithub, FaFacebook, FaTwitter } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoSkype } from "react-icons/io";
+import { ThemeToggle } from "@/Components/ui/themeToggleButton";
 
 const dockItems = [
   {
@@ -45,7 +46,7 @@ function NavIcon({ item, isActive }) {
 
   const iconContent = (
     <motion.div
-      className="relative flex items-center justify-center gap-5  rounded-full cursor-pointer"
+      className="relative flex items-center dark:text-white justify-center gap-5  rounded-full cursor-pointer"
       style={{ width: 36, height: 36 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -184,43 +185,37 @@ export function Navbar() {
         }}
       >
         {/* Left — Logo */}
-        <span className="font-medium text-sm whitespace-nowrap mr-auto">
+        <span className="font-medium dark:text-white text-black text-sm mr-auto">
           <IoLogoSkype size={35} />
         </span>
 
-        {/* Center — Icons */}
-        <div
-          style={{
-            position: "absolute",
-            right: "10%",
-            display: "flex",
-            alignItems: "center",
-            gap: 4,
-          }}
-        >
-          {dockItems.map((item) => (
-            <NavIcon
-              key={item.id}
-              item={item}
-              isActive={activeSection === item.id}
-            />
-          ))}
-        </div>
+        <div className="flex items-center gap-3">
+          {/* Center — Icons */}
+          <div className="flex gap-3">
+            {dockItems.map((item) => (
+              <NavIcon
+                key={item.id}
+                item={item}
+                isActive={activeSection === item.id}
+              />
+            ))}
+          </div>
+          <ThemeToggle></ThemeToggle>
 
-        {/* Right — Contact button */}
-        <div className="ml-auto">
-          <HashLink smooth to="/#contact">
-            <button
-              className="text-xs font-medium px-4 py-1.5 rounded-full active:scale-95 transition-all whitespace-nowrap"
-              style={{
-                background: "rgba(255,255,255,0.92)",
-                color: "#111",
-                border: "none",
-              }}
-            >
-              Contact me
-            </button>
-          </HashLink>
+          <div>
+            <HashLink smooth to="/#contact">
+              <button
+                className="text-xs cursor-pointer font-medium px-4 py-1.5 rounded-full active:scale-95 transition-all"
+                style={{
+                  background: "rgba(255,255,255,0.92)",
+                  color: "#111",
+                  border: "none",
+                }}
+              >
+                Contact me
+              </button>
+            </HashLink>
+          </div>
         </div>
       </div>
     </div>
