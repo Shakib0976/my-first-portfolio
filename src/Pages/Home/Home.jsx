@@ -29,24 +29,38 @@ const Home = () => {
   const [text, setText] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showCursor, setShowCursor] = useState(true); // FIX 1: cursor blink control
   const [speed] = useState(150);
+
+  // FIX 1: Cursor blink effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor((prev) => !prev);
+    }, 530);
+    return () => clearInterval(cursorInterval);
+  }, []);
 
   useEffect(() => {
     const current = words[wordIndex];
-    const timeout = setTimeout(() => {
-      setText(
-        isDeleting
-          ? current.substring(0, text.length - 1)
-          : current.substring(0, text.length + 1),
-      );
+    const isComplete = !isDeleting && text === current;
 
-      if (!isDeleting && text === current) {
-        setTimeout(() => setIsDeleting(true), 1000);
-      } else if (isDeleting && text === "") {
-        setIsDeleting(false);
-        setWordIndex((prev) => (prev + 1) % words.length);
-      }
-    }, speed);
+    const timeout = setTimeout(
+      () => {
+        setText(
+          isDeleting
+            ? current.substring(0, text.length - 1)
+            : current.substring(0, text.length + 1),
+        );
+
+        if (isComplete) {
+          setTimeout(() => setIsDeleting(true), 1500); // pause before deleting
+        } else if (isDeleting && text === "") {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % words.length);
+        }
+      },
+      isComplete ? 0 : speed,
+    );
 
     return () => clearTimeout(timeout);
   }, [text, isDeleting, wordIndex, words, speed]);
@@ -55,42 +69,42 @@ const Home = () => {
     {
       name: "React",
       icon: <FaReact className="text-cyan-400" />,
-      color: "from-cyan-400/20 to-cyan-500/10",
+      color: "from-cyan-200/20 to-cyan-500/10",
     },
     {
       name: "Next.js",
       icon: <SiNextdotjs className="text-black dark:text-gray-300" />,
-      color: "from-gray-400/20 to-gray-500/10",
+      color: "from-gray-200/20 to-gray-500/10",
     },
     {
       name: "JavaScript",
       icon: <FaJsSquare className="text-yellow-400" />,
-      color: "from-yellow-400/20 to-yellow-500/10",
+      color: "from-yellow-200/20 to-yellow-500/10",
     },
     {
       name: "TypeScript",
       icon: <SiTypescript className="text-blue-500" />,
-      color: "from-blue-400/20 to-blue-500/10",
+      color: "from-blue-200/20 to-blue-500/10",
     },
     {
       name: "Node.js",
       icon: <FaNodeJs className="text-green-500" />,
-      color: "from-green-400/20 to-green-500/10",
+      color: "from-green-200/20 to-green-500/10",
     },
     {
       name: "MongoDB",
       icon: <SiMongodb className="text-emerald-500" />,
-      color: "from-emerald-400/20 to-emerald-500/10",
+      color: "from-emerald-200/20 to-emerald-500/10",
     },
     {
       name: "Express",
       icon: <SiExpress className="text-gray-600 dark:text-gray-400" />,
-      color: "from-gray-400/20 to-gray-500/10",
+      color: "from-gray-200/20 to-gray-500/10",
     },
     {
       name: "Tailwind",
       icon: <SiTailwindcss className="text-teal-400" />,
-      color: "from-teal-400/20 to-teal-500/10",
+      color: "from-teal-200/20 to-teal-500/10",
     },
   ];
 
@@ -99,18 +113,19 @@ const Home = () => {
       {/* hero section */}
       <section
         id="home"
-        className="min-h-screen pt-35  max-w-11/12 md:max-w-11/14 px-4 flex flex-col-reverse lg:flex-row items-center justify-between lg:gap-30 gap-10   scroll-mt-20 sm:px-4 mx-auto py-10"
+        className="min-h-screen pt-35 max-w-11/12 md:max-w-11/14 px-4 flex flex-col-reverse lg:flex-row items-center justify-between lg:gap-30 gap-10 scroll-mt-20 sm:px-4 mx-auto py-10"
       >
         {/* card */}
-        <div className="text-center lg:text-left max-w-xl xl:min-w-xl  mx-auto lg:mx-0">
+        <div className="text-center lg:text-left max-w-xl xl:min-w-xl mx-auto lg:mx-0">
           {/* Badge */}
-          <span className="hidden lg:flex items-center w-55 text-teal-500 py-1 px-3  gap-2 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-teal-500/10 text-sm font-medium backdrop-blur-sm">
+          <span className="hidden lg:flex items-center w-55 text-teal-500 py-1 px-3 gap-2 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-teal-500/10 text-sm font-medium backdrop-blur-sm">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
             </span>
             Welcome to My Portfolio
           </span>
+
           {/* Main Heading Area */}
           <div className="mt-4">
             <motion.div
@@ -127,38 +142,45 @@ const Home = () => {
               </span>
             </motion.div>
 
-            <h1 className="text-3xl md:text-4xl text-black dark:text-white  lg:text-6xl font-bold mt-2">
+            <h1 className="text-3xl md:text-4xl text-black dark:text-white lg:text-6xl font-bold mt-2">
               I'm{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-600">
                 Md. Shakib
               </span>
             </h1>
 
-            <div className="h-12 mt-2 dark:text-gray-100 inter-font text-xl md:text-2xl text-gray-700 font-semibold">
-              {text}|
+            {/* FIX 1: Cursor only shows as blinking, separate from text */}
+            <div className="h-12 mt-2 dark:text-gray-100 inter-font text-xl md:text-2xl text-gray-700 font-semibold flex items-center justify-center lg:justify-start gap-0">
+              <span>{text}</span>
+              <span
+                className={`inline-block w-0.5 h-6 bg-teal-500 ml-0.5 transition-opacity duration-100 ${
+                  showCursor ? "opacity-100" : "opacity-0"
+                }`}
+              />
             </div>
           </div>
+
           {/* Description */}
           <p className="mt-4 inter-font text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-            I build fast, responsive, and user-friendly web applications using
-            modern technologies like React, Node.js, and MongoDB. Passionate
-            about creating clean UI and scalable backend systems.
+            I build scalable MERN stack applications with clean UI, optimized
+            performance, and real-world problem solving in mind.
           </p>
-          {/* Tech Stack Tags */}
+
+          {/* FIX 2: Tech Stack Tags — uniform height & padding */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-6 flex flex-wrap gap-3 justify-center lg:justify-start"
+            className="mt-6 flex flex-wrap gap-2 justify-center lg:justify-start"
           >
-            {techStack.map((tech, index) => (
+            {techStack.map((tech) => (
               <div
                 key={tech.name}
-                className={`group relative px-3 py-2 rounded-xl bg-gradient-to-br ${tech.color} backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30 shadow-md hover:shadow-xl transition-all duration-300`}
+                className={`group relative px-3 py-1.5 rounded-xl bg-gradient-to-br ${tech.color} backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30 shadow-sm hover:shadow-xl transition-all duration-300`}
               >
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">{tech.icon}</span>
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-base leading-none">{tech.icon}</span>
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
                     {tech.name}
                   </span>
                 </div>
@@ -166,34 +188,34 @@ const Home = () => {
               </div>
             ))}
           </motion.div>
-          {/* Stats */}
+
+          {/* FIX 3: Stats — bigger number, smaller label, clear hierarchy */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-8 flex  flex-wrap gap-6 justify-center lg:justify-start"
+            className="mt-8 flex flex-wrap gap-6 justify-center lg:justify-start"
           >
             {[
               { value: "10+", label: "Projects Completed", icon: "✅" },
               { value: "MERN", label: "Stack Expert", icon: "⚡" },
               { value: "100%", label: "Responsive", icon: "📱" },
             ].map((stat, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2 "
-              >
-                <span className="text-lg">{stat.icon}</span>
+              <div key={index} className="flex items-center gap-2">
+                <span className="text-xl">{stat.icon}</span>
                 <div>
-                  <div className="font-bold text-gray-800 dark:text-gray-200">
+                  {/* FIX 3: Number/value is now noticeably larger */}
+                  <div className="text-lg font-bold text-gray-800 dark:text-gray-100 leading-tight">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                  <div className="text-xs text-gray-500 dark:text-gray-400 leading-tight">
                     {stat.label}
                   </div>
                 </div>
               </div>
             ))}
           </motion.div>
+
           {/* CTA Buttons */}
           <div className="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start">
             <a
@@ -215,7 +237,7 @@ const Home = () => {
         </div>
 
         {/* Image with floating cards */}
-        <div className="relative flex  justify-center   items-center w-52 h-52 sm:w-72 sm:h-72 lg:w-116 lg:h-116">
+        <div className="relative flex justify-center items-center w-52 h-52 sm:w-72 sm:h-72 lg:w-116 lg:h-116">
           {/* Shadow background (glow) */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 blur-2xl opacity-40"></div>
           <div className="relative z-10 rounded-full overflow-hidden shadow-2xl">
@@ -242,6 +264,7 @@ const Home = () => {
           </div>
           <div className="absolute -top-4 -right-4 w-16 h-16 bg-yellow-400/20 rounded-2xl rotate-12 backdrop-blur-sm border border-yellow-200/30"></div>
           <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-blue-400/20 rounded-3xl -rotate-12 backdrop-blur-sm border border-blue-200/30"></div>
+
           {/* Floating skill cards */}
           <motion.div
             animate={{ y: [0, -15, 0] }}
@@ -305,7 +328,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* <HeroSection></HeroSection> */}
 
       {/* about section */}
       <section id="about" className="scroll-mt-20">
