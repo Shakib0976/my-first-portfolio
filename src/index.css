@@ -40,6 +40,40 @@ html.dark body {
   animation: bg-scrolling-reverse 8s linear infinite;
 }
 
+/* Mobile first */
+.container {
+  width: 91.666667%;
+  max-width: 91.666667%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* sm: tighter */
+  padding-right: 1rem;
+}
+
+/* Tablet — 768px+ */
+@media (min-width: 768px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Desktop — 1024px+ */
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Wide — 1280px+ */
+@media (min-width: 1280px) {
+  .container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
 @keyframes bg-scrolling-reverse {
   0% {
     background-position: 0 0;

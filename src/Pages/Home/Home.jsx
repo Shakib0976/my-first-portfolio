@@ -8,6 +8,7 @@ import Skills from "../Skills/Skills";
 import Project from "../Project/Project";
 import Contact from "../Contact/Contact";
 import Education from "../Education/Education";
+import HeroSection from "../HereoSection/Hero";
 
 const Home = () => {
   const words = ["a MERN Stack Developer", "a Frontend Specialist"];
@@ -41,66 +42,84 @@ const Home = () => {
       {/* hero section */}
       <section
         id="home"
-        className="min-h-screen max-w-11/12 md:max-w-11/14 px-4 flex flex-col-reverse lg:flex-row items-center justify-between lg:gap-80 gap-10   scroll-mt-20 sm:px-4 mx-auto py-10"
+        className="min-h-screen  max-w-11/12 md:max-w-11/14 px-4 flex flex-col-reverse lg:flex-row items-center justify-between lg:gap-80 gap-10   scroll-mt-20 sm:px-4 mx-auto py-10"
       >
         {/* middle card */}
-        <div className="text-center lg:text-left  max-w-xl">
-          <span className="text-teal-500 py-1 px-2 rounded-full bg-gradient-to-r from-blue-500/15 via-purple-500/15 to-teal-500/15">
-            Welcome My Portfolio
+        <div className="text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+          {/* Badge */}
+          <span className="inline-block text-teal-500 py-1 px-3 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-teal-500/10 text-sm font-medium backdrop-blur-sm">
+            ✨ Welcome to My Portfolio
           </span>
-          {/* <h1 className="text-sm font-bold mb-2 text-teal-400">&lt;C/&gt;</h1> */}
-          <p className="text-2xl poppins-font text-gray-800  sm:text-3xl md:text-4xl lg:text-6xl font-semibold leading-snug">
-            <span class="text-gray-800 text-lg md:text-3xl font-bold">Hi</span>
-            <span class="wave inline-block text-xl ml-2 md:text-4xl animate-wave">
-              👋
-            </span>
 
-            <h1 className="lg:text-5xl md:text-4xl text-3xl font-semibold">
-              I’m <span className="text-teal-600"> Md. Shakib </span>
+          {/* Main Heading Area */}
+          <div className="mt-4">
+            <div className="flex items-center justify-center lg:justify-start gap-2">
+              <span className="text-gray-800 text-lg md:text-2xl font-bold">
+                Hi
+              </span>
+              <span className="wave inline-block text-2xl md:text-3xl animate-wave">
+                👋
+              </span>
+            </div>
+
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2">
+              I'm{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-600">
+                Md. Shakib
+              </span>
             </h1>
 
-            <span className="mt-2 h-10 block inter-font text-2xl text-gray-700 font-semibold">
+            <div className="h-12 mt-2 inter-font text-xl md:text-2xl text-gray-700 font-semibold">
               {text}|
-            </span>
-          </p>
+            </div>
+          </div>
 
-          {/* <h1 className="text-sm font-bold mt-4 text-teal-400">&lt;C/&gt;</h1> */}
-
-          <p className="mt-4 inter-font  text-sm sm:text-base font-normal text-gray-600 leading-relaxed">
+          {/* Description */}
+          <p className="mt-4 inter-font text-sm sm:text-base text-gray-600 leading-relaxed">
             I build fast, responsive, and user-friendly web applications using
             modern technologies like React, Node.js, and MongoDB. Passionate
             about creating clean UI and scalable backend systems.
           </p>
-          <div className="mt-5 flex flex-wrap gap-3 justify-center lg:justify-start text-sm text-gray-600">
-            <span className="px-3 py-1 bg-gray-100 rounded-full">React</span>
-            <span className="px-3 py-1 bg-gray-100 rounded-full">Node.js</span>
-            <span className="px-3 py-1 bg-gray-100 rounded-full">MongoDB</span>
-            <span className="px-3 py-1 bg-gray-100 rounded-full">Express</span>
-            <span className="px-3 py-1 bg-gray-100 rounded-full">Tailwind</span>
-          </div>
-          <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-500">
-            <span>✔ 10+ Projects</span>
-            <span>✔ MERN Stack</span>
-            <span>✔ Responsive Design</span>
+
+          {/* Tech Stack Tags */}
+          <div className="mt-5 flex flex-wrap gap-2 justify-center lg:justify-start">
+            {["React", "Node.js", "MongoDB", "Express", "Tailwind"].map(
+              (tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1.5 bg-gray-100/80 backdrop-blur-sm rounded-full text-xs sm:text-sm text-gray-700 font-medium hover:bg-teal-50 hover:text-teal-600 transition-all duration-200 cursor-default"
+                >
+                  {tech}
+                </span>
+              ),
+            )}
           </div>
 
-          <div className="mt-6 md:mt-8 flex flex-wrap gap-4 justify-center lg:justify-start">
-            {/* View Projects */}
+          {/* Stats */}
+          <div className="mt-5 flex flex-wrap gap-5 justify-center lg:justify-start text-sm text-gray-600">
+            <span className="flex items-center gap-1.5">✅ 10+ Projects</span>
+            <span className="flex items-center gap-1.5">⚡ MERN Stack</span>
+            <span className="flex items-center gap-1.5">
+              📱 Responsive Design
+            </span>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start">
             <a
               href="#projects"
-              className="px-5 py-2 rounded-lg bg-gray-900 text-white text-sm sm:text-base hover:bg-gray-800 transition"
+              className="px-6 py-2.5 rounded-lg bg-gray-900 text-white text-sm sm:text-base font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
             >
               View Projects
             </a>
 
-            {/* Download CV */}
             <a
               href="/Shakib.Resume.docx (5).pdf"
               download
-              className="group flex items-center gap-2 bg-gradient-to-r from-teal-400 to-teal-600 px-4 py-2 rounded shadow text-teal-100 text-sm sm:text-base transition-all duration-300"
+              className="group flex items-center gap-2 bg-gradient-to-r from-teal-500 to-teal-600 px-5 py-2.5 rounded-lg shadow-md text-white text-sm sm:text-base font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
             >
               Download CV
-              <FaDownload className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-1" />
+              <FaDownload className="text-sm transition-transform duration-300 group-hover:translate-y-0.5" />
             </a>
           </div>
         </div>
@@ -166,6 +185,7 @@ const Home = () => {
           Scroll Down ↓
         </div>
       </section>
+      {/* <HeroSection></HeroSection> */}
 
       {/* about section */}
       <section id="about" className="scroll-mt-20">

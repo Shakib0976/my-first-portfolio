@@ -43,7 +43,7 @@ const RootLayouts = () => {
   return (
     <div>
       {/* sidebar */}
-      <aside>
+      <aside className="hidden md:flex">
         <Dock />
       </aside>
 

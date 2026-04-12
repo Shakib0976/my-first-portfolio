@@ -59,19 +59,12 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
+    
     >
-      {/* Subtle background grid */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: "linear-gradient(#0f766e 1px, transparent 1px), linear-gradient(to right, #0f766e 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
+      
 
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-20 flex flex-col-reverse lg:flex-row items-center justify-between gap-16 lg:gap-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-40 flex flex-col-reverse lg:flex-row items-center justify-between gap-16 lg:gap-20">
 
         {/* ── LEFT SECTION ── */}
         <motion.div
@@ -194,27 +187,6 @@ export default function HeroSection() {
               Download CV
               <FaDownload className="w-3 h-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
-          </motion.div>
-
-          {/* Social links */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-6 flex items-center gap-4 justify-center lg:justify-start"
-          >
-            <a
-              href="#"
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:border-teal-500 hover:text-teal-600 transition-all duration-200"
-            >
-              <FaGithub className="w-4 h-4" />
-            </a>
-            <a
-              href="#"
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:border-teal-500 hover:text-teal-600 transition-all duration-200"
-            >
-              <FaLinkedin className="w-4 h-4" />
-            </a>
-            <div className="h-px w-16 bg-gray-200" />
-            <span className="text-xs text-gray-400 tracking-wide">Follow me</span>
           </motion.div>
         </motion.div>
 
