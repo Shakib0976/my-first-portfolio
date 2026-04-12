@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FaDownload } from "react-icons/fa";
+import {
+  FaDatabase,
+  FaDownload,
+  FaJsSquare,
+  FaNodeJs,
+  FaReact,
+  FaServer,
+} from "react-icons/fa";
 import PixelTransition from "../../Components/PixelTransiction";
 
 import Adbout from "../About/Adbout";
@@ -9,6 +16,13 @@ import Project from "../Project/Project";
 import Contact from "../Contact/Contact";
 import Education from "../Education/Education";
 import HeroSection from "../HereoSection/Hero";
+import {
+  SiExpress,
+  SiMongodb,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si";
 
 const Home = () => {
   const words = ["a MERN Stack Developer", "a Frontend Specialist"];
@@ -37,6 +51,49 @@ const Home = () => {
     return () => clearTimeout(timeout);
   }, [text, isDeleting, wordIndex, words, speed]);
 
+  const techStack = [
+    {
+      name: "React",
+      icon: <FaReact className="text-cyan-400" />,
+      color: "from-cyan-400/20 to-cyan-500/10",
+    },
+    {
+      name: "Next.js",
+      icon: <SiNextdotjs className="text-black dark:text-gray-300" />,
+      color: "from-gray-400/20 to-gray-500/10",
+    },
+    {
+      name: "JavaScript",
+      icon: <FaJsSquare className="text-yellow-400" />,
+      color: "from-yellow-400/20 to-yellow-500/10",
+    },
+    {
+      name: "TypeScript",
+      icon: <SiTypescript className="text-blue-500" />,
+      color: "from-blue-400/20 to-blue-500/10",
+    },
+    {
+      name: "Node.js",
+      icon: <FaNodeJs className="text-green-500" />,
+      color: "from-green-400/20 to-green-500/10",
+    },
+    {
+      name: "MongoDB",
+      icon: <SiMongodb className="text-emerald-500" />,
+      color: "from-emerald-400/20 to-emerald-500/10",
+    },
+    {
+      name: "Express",
+      icon: <SiExpress className="text-gray-600 dark:text-gray-400" />,
+      color: "from-gray-400/20 to-gray-500/10",
+    },
+    {
+      name: "Tailwind",
+      icon: <SiTailwindcss className="text-teal-400" />,
+      color: "from-teal-400/20 to-teal-500/10",
+    },
+  ];
+
   return (
     <div className="text-gray-200 font-sans inter-font">
       {/* hero section */}
@@ -47,20 +104,28 @@ const Home = () => {
         {/* card */}
         <div className="text-center lg:text-left max-w-xl xl:min-w-xl  mx-auto lg:mx-0">
           {/* Badge */}
-          <span className="inline-block text-teal-500 py-1 px-3 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-teal-500/10 text-sm font-medium backdrop-blur-sm">
-            ✨ Welcome to My Portfolio
+          <span className="hidden lg:flex items-center w-55 text-teal-500 py-1 px-3  gap-2 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-teal-500/10 text-sm font-medium backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+            </span>
+            Welcome to My Portfolio
           </span>
-
           {/* Main Heading Area */}
           <div className="mt-4">
-            <div className="flex items-center justify-center lg:justify-start gap-2">
-              <span className="text-gray-800 text-lg md:text-2xl lg:text-3xl font-bold">
-                Hi
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mt-6 flex items-center justify-center lg:justify-start gap-2"
+            >
+              <span className="text-gray-700 dark:text-gray-300 text-xl md:text-2xl font-medium">
+                Hi there
               </span>
               <span className="wave inline-block text-2xl md:text-3xl animate-wave">
                 👋
               </span>
-            </div>
+            </motion.div>
 
             <h1 className="text-3xl md:text-4xl text-black dark:text-white  lg:text-6xl font-bold mt-2">
               I'm{" "}
@@ -69,53 +134,71 @@ const Home = () => {
               </span>
             </h1>
 
-            <div className="h-12 mt-2 inter-font text-xl md:text-2xl text-gray-700 font-semibold">
+            <div className="h-12 mt-2 dark:text-gray-100 inter-font text-xl md:text-2xl text-gray-700 font-semibold">
               {text}|
             </div>
           </div>
-
           {/* Description */}
-          <p className="mt-4 inter-font text-sm sm:text-base text-gray-600 leading-relaxed">
+          <p className="mt-4 inter-font text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
             I build fast, responsive, and user-friendly web applications using
             modern technologies like React, Node.js, and MongoDB. Passionate
             about creating clean UI and scalable backend systems.
           </p>
-
           {/* Tech Stack Tags */}
-          <div className="mt-5 flex flex-wrap gap-2 justify-center lg:justify-start">
-            {[
-              "React",
-              "Next.js",
-              "javaScript",
-              "TypScript",
-              "Node.js",
-              "MongoDB",
-              "Express",
-              "Tailwind",
-            ].map((tech) => (
-              <span
-                key={tech}
-                className="px-3 py-1.5 bg-gray-100/10 backdrop-blur-sm rounded-full text-xs sm:text-sm text-gray-700 font-medium hover:bg-teal-50 hover:text-teal-600 transition-all duration-200 cursor-default"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-6 flex flex-wrap gap-3 justify-center lg:justify-start"
+          >
+            {techStack.map((tech, index) => (
+              <div
+                key={tech.name}
+                className={`group relative px-3 py-2 rounded-xl bg-gradient-to-br ${tech.color} backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30 shadow-md hover:shadow-xl transition-all duration-300`}
               >
-                {tech}
-              </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">{tech.icon}</span>
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {tech.name}
+                  </span>
+                </div>
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
             ))}
-          </div>
-
+          </motion.div>
           {/* Stats */}
-          <div className="mt-5 flex flex-wrap gap-5 justify-center lg:justify-start text-sm text-gray-600">
-            <span className="flex items-center gap-1.5">✅ 10+ Projects</span>
-            <span className="flex items-center gap-1.5">⚡ MERN Stack</span>
-            <span className="flex items-center gap-1.5">
-              📱 Responsive Design
-            </span>
-          </div>
-
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mt-8 flex  flex-wrap gap-6 justify-center lg:justify-start"
+          >
+            {[
+              { value: "10+", label: "Projects Completed", icon: "✅" },
+              { value: "MERN", label: "Stack Expert", icon: "⚡" },
+              { value: "100%", label: "Responsive", icon: "📱" },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-2 "
+              >
+                <span className="text-lg">{stat.icon}</span>
+                <div>
+                  <div className="font-bold text-gray-800 dark:text-gray-200">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                    {stat.label}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
           {/* CTA Buttons */}
           <div className="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start">
             <a
               href="#projects"
-              className="px-6 py-2.5 rounded-lg bg-gray-900 text-white text-sm sm:text-base font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+              className="px-6 py-2.5 rounded-lg bg-gray-900 dark:bg-gray-600 text-white text-sm sm:text-base font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
             >
               View Projects
             </a>
@@ -135,61 +218,85 @@ const Home = () => {
         <div className="relative flex  justify-center   items-center w-52 h-52 sm:w-72 sm:h-72 lg:w-116 lg:h-116">
           {/* Shadow background (glow) */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 blur-2xl opacity-40"></div>
-
-          <PixelTransition
-            firstContent={
-              <img
-                src="https://i.ibb.co.com/GQhkTh80/sk8-24-at-09-22-28-1cea5aae.jpg"
-                alt="Profile"
-                className="rounded-full w-full h-full cursor-pointer z-80 object-cover"
-              />
-            }
-            secondContent={
-              <img
-                src="https://i.ibb.co.com/GQhkTh80/sk8-24-at-09-22-28-1cea5aae.jpg"
-                alt="Profile"
-                className="rounded-full w-full  h-full cursor-pointer z-80 object-cover"
-              />
-            }
-            gridSize={12}
-            pixelColor="#ffffff"
-            animationStepDuration={0.4}
-            className="custom-pixel-card"
-          />
+          <div className="relative z-10 rounded-full overflow-hidden shadow-2xl">
+            <PixelTransition
+              firstContent={
+                <img
+                  src="https://i.ibb.co.com/GQhkTh80/sk8-24-at-09-22-28-1cea5aae.jpg"
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              }
+              secondContent={
+                <img
+                  src="https://i.ibb.co.com/GQhkTh80/sk8-24-at-09-22-28-1cea5aae.jpg"
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              }
+              gridSize={12}
+              pixelColor="#ffffff"
+              animationStepDuration={0.4}
+              className="rounded-full"
+            />
+          </div>
           <div className="absolute -top-4 -right-4 w-16 h-16 bg-yellow-400/20 rounded-2xl rotate-12 backdrop-blur-sm border border-yellow-200/30"></div>
           <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-blue-400/20 rounded-3xl -rotate-12 backdrop-blur-sm border border-blue-200/30"></div>
           {/* Floating skill cards */}
           <motion.div
-            initial={{ y: 0 }}
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="absolute -left-16 z-40 sm:-left-24 lg:-left-32 top-1/3 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -left-20 lg:-left-28 top-1/3 z-20 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md px-2 lg:px-4 py-1 lg:py-2 rounded-xl shadow-xl border border-teal-200 dark:border-teal-800"
           >
-            Frontend Developer
+            <div className="flex items-center gap-1 lg:gap-2">
+              <FaReact className="text-cyan-400 text-sm lg:text-xl animate-spin-slow" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                React Expert
+              </span>
+            </div>
           </motion.div>
 
           <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: [0, 10, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity }}
-            className="absolute -right-20 md:-right-16 z-40 lg:-right-24 top-1/5 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
+            animate={{ x: [0, 15, 0] }}
+            transition={{
+              duration: 3.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5,
+            }}
+            className="absolute -right-16 lg:-right-20 top-8 lg:top-20 z-20 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md px-2 lg:px-4 py-1 lg:py-2 rounded-xl shadow-xl border border-blue-200 dark:border-blue-800"
           >
-            MERN Stack Developer
+            <div className="flex items-center gap-2">
+              <FaServer className="text-green-500 text-sm lg:text-xl" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                Backend Pro
+              </span>
+            </div>
           </motion.div>
 
           <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: [0, 10, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity }}
-            className="absolute -right-5 sm:-right-8 z-40 lg:-right-10 bottom-1/5 bg-white text-black text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-lg shadow-md"
+            animate={{ y: [0, 15, 0] }}
+            transition={{
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1,
+            }}
+            className="absolute -right-10 lg:-right-12 bottom-20 z-20 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md px-2 lg:px-4 py-1 lg:py-2 rounded-xl shadow-xl border border-purple-200 dark:border-purple-800"
           >
-            Problem Solver
+            <div className="flex items-center gap-2">
+              <FaDatabase className="text-emerald-500 text-sm lg:text-xl" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                MongoDB
+              </span>
+            </div>
           </motion.div>
+
           <div className="absolute -inset-8 border-2 border-teal-200/30 z-0 dark:border-teal-900/30 rounded-full animate-spin-slow"></div>
           <div className="absolute -ins-12 border border-blue-200/20 z-0 dark:border-blue-900/20 rounded-full animate-spin-slow-reverse"></div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
+        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 hidden lg:block">
           <div className="flex flex-col items-center gap-2 text-gray-400 animate-bounce">
             <span className="text-sm">Scroll down</span>
             <div className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center">
