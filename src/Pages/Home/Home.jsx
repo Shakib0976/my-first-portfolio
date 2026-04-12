@@ -42,10 +42,10 @@ const Home = () => {
       {/* hero section */}
       <section
         id="home"
-        className="min-h-screen  max-w-11/12 md:max-w-11/14 px-4 flex flex-col-reverse lg:flex-row items-center justify-between lg:gap-80 gap-10   scroll-mt-20 sm:px-4 mx-auto py-10"
+        className="min-h-screen pt-35  max-w-11/12 md:max-w-11/14 px-4 flex flex-col-reverse lg:flex-row items-center justify-between lg:gap-30 gap-10   scroll-mt-20 sm:px-4 mx-auto py-10"
       >
-        {/* middle card */}
-        <div className="text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+        {/* card */}
+        <div className="text-center lg:text-left max-w-xl xl:min-w-xl  mx-auto lg:mx-0">
           {/* Badge */}
           <span className="inline-block text-teal-500 py-1 px-3 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-teal-500/10 text-sm font-medium backdrop-blur-sm">
             ✨ Welcome to My Portfolio
@@ -54,7 +54,7 @@ const Home = () => {
           {/* Main Heading Area */}
           <div className="mt-4">
             <div className="flex items-center justify-center lg:justify-start gap-2">
-              <span className="text-gray-800 text-lg md:text-2xl font-bold">
+              <span className="text-gray-800 text-lg md:text-2xl lg:text-3xl font-bold">
                 Hi
               </span>
               <span className="wave inline-block text-2xl md:text-3xl animate-wave">
@@ -62,7 +62,7 @@ const Home = () => {
               </span>
             </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2">
+            <h1 className="text-3xl md:text-4xl text-black dark:text-white  lg:text-6xl font-bold mt-2">
               I'm{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-600">
                 Md. Shakib
@@ -83,16 +83,23 @@ const Home = () => {
 
           {/* Tech Stack Tags */}
           <div className="mt-5 flex flex-wrap gap-2 justify-center lg:justify-start">
-            {["React", "Node.js", "MongoDB", "Express", "Tailwind"].map(
-              (tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1.5 bg-gray-100/80 backdrop-blur-sm rounded-full text-xs sm:text-sm text-gray-700 font-medium hover:bg-teal-50 hover:text-teal-600 transition-all duration-200 cursor-default"
-                >
-                  {tech}
-                </span>
-              ),
-            )}
+            {[
+              "React",
+              "Next.js",
+              "javaScript",
+              "TypScript",
+              "Node.js",
+              "MongoDB",
+              "Express",
+              "Tailwind",
+            ].map((tech) => (
+              <span
+                key={tech}
+                className="px-3 py-1.5 bg-gray-100/10 backdrop-blur-sm rounded-full text-xs sm:text-sm text-gray-700 font-medium hover:bg-teal-50 hover:text-teal-600 transition-all duration-200 cursor-default"
+              >
+                {tech}
+              </span>
+            ))}
           </div>
 
           {/* Stats */}
@@ -149,7 +156,8 @@ const Home = () => {
             animationStepDuration={0.4}
             className="custom-pixel-card"
           />
-
+          <div className="absolute -top-4 -right-4 w-16 h-16 bg-yellow-400/20 rounded-2xl rotate-12 backdrop-blur-sm border border-yellow-200/30"></div>
+          <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-blue-400/20 rounded-3xl -rotate-12 backdrop-blur-sm border border-blue-200/30"></div>
           {/* Floating skill cards */}
           <motion.div
             initial={{ y: 0 }}
@@ -181,8 +189,13 @@ const Home = () => {
           <div className="absolute -ins-12 border border-blue-200/20 z-0 dark:border-blue-900/20 rounded-full animate-spin-slow-reverse"></div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-400 text-sm animate-bounce">
-          Scroll Down ↓
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
+          <div className="flex flex-col items-center gap-2 text-gray-400 animate-bounce">
+            <span className="text-sm">Scroll down</span>
+            <div className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-gray-300 rounded-full mt-2"></div>
+            </div>
+          </div>
         </div>
       </section>
       {/* <HeroSection></HeroSection> */}
