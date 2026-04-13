@@ -334,7 +334,7 @@ const Home = () => {
         <Adbout />
       </section>
 
-      {/* skills section */}
+      {/* skills section  */}
       <section id="skills" className="scroll-mt-20">
         <Skills />
       </section>
