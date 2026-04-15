@@ -345,7 +345,7 @@ const Home = () => {
       </section>
 
       <section id="education" className="scroll-mt-20">
-        <Education />
+        <Education></Education>
       </section>
 
       {/* contact section */}
