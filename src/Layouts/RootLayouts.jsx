@@ -8,20 +8,17 @@ import {
   FaGithub,
   FaHome,
   FaLinkedin,
-  FaProjectDiagram,
-  FaTimes,
-  FaUser,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router";
 import { HashLink } from "react-router-hash-link";
-import Loader from "../Components/Loader.jsx"; // 👈 import loader
+import Loader from "../Components/Loader.jsx"; 
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/Components/ui/tooltip.jsx";
-import { Dock } from "@/Components/unlumen-ui/dock.jsx";
-import { Navbar } from "@/Pages/Navbar/navbar.jsx";
+import { Dock } from "@/Components/unlumen-ui/dock.jsx"
+import { Navbar } from "@/Pages/Navbar/Navbar.jsx";
 
 const RootLayouts = () => {
   const [isOpen, setIsOpen] = useState(false);

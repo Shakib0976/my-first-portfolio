@@ -23,6 +23,7 @@ import {
   SiTailwindcss,
   SiTypescript,
 } from "react-icons/si";
+import ProjectSection from "../Project/ProjectSection";
 
 const Home = () => {
   const words = ["a MERN Stack Developer", "a Frontend Specialist"];
@@ -329,6 +330,8 @@ const Home = () => {
         </div>
       </section>
 
+
+<ProjectSection/>
       {/* about section */}
       <section id="about" className="scroll-mt-20">
         <Adbout />

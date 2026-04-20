@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import gsap from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {ReactLenis} from "lenis/react"
+
 
 const Project = () => {
     useEffect(() => {

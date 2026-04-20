@@ -50,6 +50,98 @@ html.dark body {
   padding-right: 1rem;
 }
 
+
+img {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+}
+
+.mainSection {
+  position: relative;
+  width : 100vw;
+  display :flex;
+  gap: 15px; 
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  width: 100vw;
+  height: 100vw;
+  flex-direction: column;
+}
+
+.row {
+  position: relative;
+  width: 100vh;
+  margin: 1em 0;
+  display: flex;
+  justify-content: center;
+  gap: 2 em;
+}
+
+.card {
+  position: relative;
+  width: 40%;
+  height: 360px;
+  border-radius: 0.75em;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.main-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.copy {
+  margin: 2em 0 ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.line {
+  position: relative;
+  margin: 0.5em 0;
+  width: max-content;
+  height: 28px;
+  clip-path: polygon(0 0, 100% 0 ,100% 100%, 0% 100%);
+}
+
+.line p {
+  position: relative;
+  font-size: 24px;
+  transform: translateY(30px);
+}
+
+button {
+  position: relative;
+  padding: 1em 2em;
+  font-size: 18px;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 8em;
+  background: none;
+  outline: none;
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+@media (max-width :900px) {
+  .card{
+    width: 50%;
+    height: 240px;
+  }
+}
+
 /* Tablet — 768px+ */
 @media (min-width: 768px) {
   .container {
