@@ -4,131 +4,129 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReactLenis } from "lenis/react";
 import { Link } from "react-router";
 
-gsap.registerPlugin(ScrollTrigger); 
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ProjectSection() {
+  useEffect(() => {
+    const mm = gsap.matchMedia();
 
-useEffect(() => {
-  const scrollTriggerSettings = {
-    trigger: ".main",
-    start: "top 25%",
-    toggleActions: "play reverse play reverse",
-  };
+    mm.add("(min-width: 1024px)", () => {
+      // Desktop: full spread animation
+      const leftXValues = [-400, -800, -400];
+      const rightXValues = [400, 800, 400];
 
-  const leftXValues = [-800, -900, -400];
-  const rightXValues = [800, 900, 400];
-  const leftRotationValues = [-30, -20, -35];
-  const rightRotationValues = [30, 20, 35];
-  const yValues = [100, -150, -400];
+      gsap.utils.toArray(".row").forEach((row, index) => {
+        const cardLeft = row.querySelector(".card-left");
+        const cardRight = row.querySelector(".card-right");
 
-  gsap.utils.toArray(".row").forEach((row, index) => {
-    const cardLeft = row.querySelector(".card-left");
-    const cardRight = row.querySelector(".card-right");
+        gsap.to(cardLeft, {
+          x: leftXValues[index],
+          scrollTrigger: {
+            trigger: ".main",
+            start: "top center",
+            end: "200% bottom",
+            scrub: true,
+          },
+        });
 
-    gsap.to(cardLeft, {
-      x: leftXValues[index],
-      y: yValues[index],
-      rotation: leftRotationValues[index],
-      scrollTrigger: {           // ← lowercase 's'
-        trigger: ".main",
-        start: "top center",
-        end: "150% bottom",
-        scrub: true,
-      },
+        gsap.to(cardRight, {
+          x: rightXValues[index],
+          scrollTrigger: {
+            trigger: ".main",
+            start: "top center",
+            end: "200% bottom",
+            scrub: true,
+          },
+        });
+      });
     });
 
-    gsap.to(cardRight, {         // ← was missing entirely!
-      x: rightXValues[index],
-      y: yValues[index],
-      rotation: rightRotationValues[index],
-      scrollTrigger: {
-        trigger: ".main",
-        start: "top center",
-        end: "150% bottom",
-        scrub: true,
-      },
+    mm.add("(max-width: 1023px)", () => {
+      // Mobile/tablet: subtle scale-in only, no x spread
+      gsap.utils.toArray(".card").forEach((card) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+            },
+          },
+        );
+      });
     });
-  });
 
-  gsap.to(".logo", {
-    scale: 1,
-    duration: 0.5,
-    ease: "power1.out",          // ← "power.out" is invalid, needs number
-    scrollTrigger: scrollTriggerSettings,
-  });
+    const scrollTriggerSettings = {
+      trigger: ".main",
+      start: "top 25%",
+      toggleActions: "play reverse play reverse",
+    };
 
-  gsap.to(".line p", {
-    y: 0,
-    duration: 0.5,
-    ease: "power1.out",
-    scrollTrigger: scrollTriggerSettings,
-  });
+    gsap.to(".line p", {
+      y: 0,
+      duration: 0.5,
+      ease: "power1.out",
+      scrollTrigger: scrollTriggerSettings,
+    });
 
-  gsap.to(".button", {
-    y: 0,
-    opacity: 1,
-    delay: 0.25,
-    duration: 0.5,
-    ease: "power1.out",
-    scrollTrigger: scrollTriggerSettings,
-  });
+    gsap.to(".button", {
+      y: 0,
+      opacity: 1,
+      delay: 0.25,
+      duration: 0.5,
+      ease: "power1.out",
+      scrollTrigger: scrollTriggerSettings,
+    });
 
-  return () => {
-    ScrollTrigger.getAll().forEach((t) => t.kill());
+    return () => {
+      mm.revert();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, []);
+
+  const generateRows = () => {
+    const rows = [];
+    for (let i = 1; i <= 3; i++) {
+      rows.push(
+        <div className="row" key={i}>
+          <div className="card card-left">
+            <img src={`/img-${2 * i - 1}.jpg`} alt="" />
+          </div>
+          <div className="card card-right">
+            <img src={`/img-${2 * i}.jpg`} alt="" />
+          </div>
+        </div>,
+      );
+    }
+    return rows;
   };
-}, []);
-
-  const generateRows  = () => {
- const rows = [];
- for (let i = 1 ; i<= 3 ; i++) {
-  rows.push(
-    <div className="row" key={i}>
-      <div className="card card-left">
-        <img src={`/img-${2*i - 1 }.jpg`} alt="" />
-      </div>
-
-        <div className="card card-right">
-        <img src={`/img-${2*i}.jpg`} alt="" />
-      </div>
-    </div>
-  )
- }
- return rows;
-  }
-
-
 
   return (
-
-    <section className="main mainSection">
-      <div className="main-content">
-        <div className="logo">
-          <img src="/logo" alt="" />
-        </div>
-
-
-        <div className="copy">
-          <div className="line">
-            <p>Delive into coding without clutter</p>
-          </div>
+    <ReactLenis root>
+      <section className="main mainSection">
+        <div className="main-content">
+          <div className="copy">
             <div className="line">
-            <p>Delive into coding without clutter</p>
-          </div>
+              <p>Dive into coding without clutter</p>
+            </div>
             <div className="line">
-            <p>Delive into coding without clutter</p>
+              <p>Build faster, ship smarter</p>
+            </div>
+            <div className="line">
+              <p>Your projects, beautifully organized</p>
+            </div>
+          </div>
+          <div className="btn">
+            <button className="button">Get All Projects</button>
           </div>
         </div>
 
-
-        <div className="btn">
-          <button>Get All project</button>
-        </div>
-
-      </div>
-
-      {generateRows()}
-
-    </section>
-    
+        <div className="rows-wrapper">{generateRows()}</div>
+      </section>
+    </ReactLenis>
   );
 }

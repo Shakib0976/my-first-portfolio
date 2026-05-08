@@ -3,16 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
-  Home,
   Mail,
-  Calendar,
-  Camera,
-  Music,
-  Settings,
-  FileText,
-  MessageCircle,
-  Globe,
-  Folder,
   HelpCircle,
   Image,
   GraduationCap,

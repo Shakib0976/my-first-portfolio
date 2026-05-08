@@ -64,6 +64,7 @@ img {
   gap: 15px; 
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .main {
@@ -83,8 +84,8 @@ img {
 
 .card {
   position: relative;
-  width: 40%;
-  height: 360px;
+  width: 50%;
+  height: 260px;
   border-radius: 0.75em;
   overflow: hidden;
   will-change: transform;
@@ -122,7 +123,7 @@ img {
   transform: translateY(30px);
 }
 
-button {
+.button2 {
   position: relative;
   padding: 1em 2em;
   font-size: 18px;
@@ -137,8 +138,8 @@ button {
 
 @media (max-width :900px) {
   .card{
-    width: 50%;
-    height: 240px;
+    width: 20%;
+    height: 140px;
   }
 }
 
