@@ -120,8 +120,12 @@ export default function ProjectSection() {
               <p>Your projects, beautifully organized</p>
             </div>
           </div>
-          <div className="btn">
-            <button className="button">Get All Projects</button>
+          <div className="mt-8">
+            <Link to="/projects">
+              <button className=" translate-y-10 rounded-full bg-black px-8 py-3 text-sm font-semibold text-white opacity-0 transition hover:scale-105 hover:bg-gray-200 sm:px-10 sm:py-4 sm:text-base">
+                View All Projects
+              </button>
+            </Link>
           </div>
         </div>
 
